@@ -7,7 +7,7 @@ public class EnemyBase : MonoBehaviour
 	[SerializeField] Transform[] routes; 
 	int routeToGo = 0; 
 	float tParam = 0f; 
-	bool coroutineAllowed = true; 
+	bool coroutineAllowed = false; 
 	bool traversedMap = false; 
 
 	[SerializeField] float speed = 0.5f;  
@@ -15,6 +15,12 @@ public class EnemyBase : MonoBehaviour
 	[SerializeField] int damage; 
 
 	float EnemyOffset = 1.0f; 
+
+	public void SetUpEnemy(Transform[] pRoutes)
+	{
+		routes = pRoutes; 
+		coroutineAllowed = true; 
+	}
 
 	void Update()
 	{
