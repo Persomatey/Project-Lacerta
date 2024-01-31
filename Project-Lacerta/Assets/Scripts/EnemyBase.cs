@@ -5,13 +5,14 @@ using UnityEngine;
 public class EnemyBase : MonoBehaviour
 {
 	[SerializeField] Transform[] routes; 
-	public int routeToGo = 0; 
-	public float tParam = 0f; 
-	public bool coroutineAllowed = true; 
+	int routeToGo = 0; 
+	float tParam = 0f; 
+	bool coroutineAllowed = true; 
+	bool traversedMap = false; 
 
-	public float speed = 0.5f; 
-	public int health; 
-	public int damage; 
+	[SerializeField] float speed = 0.5f;  
+	[SerializeField] int health; 
+	[SerializeField] int damage; 
 
 	float EnemyOffset = 1.0f; 
 
@@ -22,7 +23,7 @@ public class EnemyBase : MonoBehaviour
 
 	void FollowBezierCurve()
 	{
-		if (coroutineAllowed)
+		if (coroutineAllowed && !traversedMap)
 		{
 			StartCoroutine(GoByTheRoute(routeToGo)); 
 		}
@@ -56,7 +57,8 @@ public class EnemyBase : MonoBehaviour
 
 		if (routeToGo > routes.Length - 1)
 		{
-			routeToGo = 0; 
+			//routeToGo = 0; 
+			traversedMap = true; 
 		}
 
 		coroutineAllowed = true; 
