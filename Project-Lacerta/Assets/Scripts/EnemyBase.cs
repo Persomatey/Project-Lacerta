@@ -39,10 +39,11 @@ public class EnemyBase : MonoBehaviour
 	{
 		coroutineAllowed = false; 
 
-		Vector3 p0 = routes[routeIndex].GetChild(0).position + new Vector3(0, EnemyOffset, 0); 
-		Vector3 p1 = routes[routeIndex].GetChild(1).position + new Vector3(0, EnemyOffset, 0); 
-		Vector3 p2 = routes[routeIndex].GetChild(2).position + new Vector3(0, EnemyOffset, 0); 
-		Vector3 p3 = routes[routeIndex].GetChild(3).position + new Vector3(0, EnemyOffset, 0); 
+
+		Vector3 p0 = routes[routeIndex].GetChild(0).position + new Vector3(0, EnemyOffset, 0);// + (Random.insideUnitSphere * 0.5f); 
+		Vector3 p1 = routes[routeIndex].GetChild(1).position + new Vector3(0, EnemyOffset, 0) + (Random.insideUnitSphere * 0.5f); 
+		Vector3 p2 = routes[routeIndex].GetChild(2).position + new Vector3(0, EnemyOffset, 0) + (Random.insideUnitSphere * 0.5f); 
+		Vector3 p3 = routes[routeIndex].GetChild(3).position + new Vector3(0, EnemyOffset, 0);// + (Random.insideUnitSphere * 0.5f); 
 
 		while (tParam < 1)
 		{
