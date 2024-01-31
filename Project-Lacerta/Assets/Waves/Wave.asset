@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Wave
   m_EditorClassIdentifier: 
   enemyPrefabsInOrder:
+  - {fileID: 6772526676330315576, guid: d281ede06ea903e4998c6f192cceda2a, type: 3}
   - {fileID: 6772526676330315576, guid: f0458c60dc7d29c47bba3e1807c5c4b2, type: 3}
-  - {fileID: 6772526676330315576, guid: f0458c60dc7d29c47bba3e1807c5c4b2, type: 3}
-  - {fileID: 6772526676330315576, guid: f0458c60dc7d29c47bba3e1807c5c4b2, type: 3}
+  - {fileID: 6772526676330315576, guid: 6356e3dbd7c5d064097821f0a4651c18, type: 3}
   enemyPrefabTimes:
+  - 1
   - 2
-  - 5
-  - 10
+  - 4
