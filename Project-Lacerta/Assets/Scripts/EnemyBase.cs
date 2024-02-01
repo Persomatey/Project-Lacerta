@@ -16,6 +16,7 @@ public class EnemyBase : MonoBehaviour
 
 	float EnemyOffset = 1.0f; 
 
+	// This gets called by the MapScript that instantiates enemies 
 	public void SetUpEnemy(Transform[] pRoutes)
 	{
 		routes = pRoutes; 
@@ -25,6 +26,7 @@ public class EnemyBase : MonoBehaviour
 	void Update()
 	{
 		FollowBezierCurve(); 
+		HealthCheck(); 
 	}
 
 	void FollowBezierCurve()
@@ -69,5 +71,25 @@ public class EnemyBase : MonoBehaviour
 		}
 
 		coroutineAllowed = true; 
+	}
+
+	public void DamageEnemy(int hitAmount)
+	{
+		health -= hitAmount; 
+	}
+
+	void HealthCheck()
+	{
+		if (health <= 0)
+		{
+			StartCoroutine(EnemyDeathSequence()); 
+		}
+	}
+
+	// this coroutine just exists in case we want to add a death animation or something 
+	IEnumerator EnemyDeathSequence()
+	{
+		yield return new WaitForEndOfFrame(); 
+		Destroy(gameObject); 
 	}
 }
