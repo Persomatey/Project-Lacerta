@@ -13,6 +13,7 @@ public class EnemyBase : MonoBehaviour
 	[SerializeField] float speed = 0.5f;  
 	[SerializeField] int health; 
 	[SerializeField] int damage; 
+	[SerializeField] int gold; 
 
 	float EnemyOffset = 1.0f; 
 
@@ -90,6 +91,7 @@ public class EnemyBase : MonoBehaviour
 	IEnumerator EnemyDeathSequence()
 	{
 		yield return new WaitForEndOfFrame(); 
+		GameObject.Find("MapPlane").GetComponent<MapScript>().IncreaseGold(gold); 
 		Destroy(gameObject); 
 	}
 }

@@ -6,7 +6,7 @@ public class ProjectileBasicTower : MonoBehaviour
 {
 	[SerializeField] int damage;
 	[SerializeField] float speed = 1; 
-	[SerializeField] Transform target;
+	Transform target;
 
 	private void Update()
 	{
@@ -15,9 +15,8 @@ public class ProjectileBasicTower : MonoBehaviour
 
 	private void OnCollisionEnter(Collision col)
 	{
-		if (col.transform.parent.GetComponent<EnemyBase>())
+		if (col.transform && col.transform.parent.GetComponent<EnemyBase>())
 		{
-			Debug.Log($"<color=green>Hit an enemy!</color> {col.transform.parent.name}"); 
 			col.transform.parent.GetComponent<EnemyBase>().DamageEnemy(damage); 
 			Destroy(gameObject); 
 		}

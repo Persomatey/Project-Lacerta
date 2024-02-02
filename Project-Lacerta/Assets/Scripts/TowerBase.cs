@@ -6,9 +6,9 @@ public class TowerBase : MonoBehaviour
 {
 	[SerializeField] float cooldown; 
 	[SerializeField] float towerRange; 
-	[SerializeField] EnemyBase[] enemies; 
-	[SerializeField] protected List<EnemyBase> enemiesWithinRange; 
-	[SerializeField] protected bool checkDone = false; 
+	EnemyBase[] enemies; 
+	protected List<EnemyBase> enemiesWithinRange; 
+	protected bool checkDone = false; 
 
 	protected void Start()
 	{
@@ -46,7 +46,6 @@ public class TowerBase : MonoBehaviour
 	{
 		yield return new WaitForSeconds(cooldown); 
 		checkDone = false; 
-		Debug.Log("Resetting check to false again"); 
 	}
 
 	// Just to visualize the radius in editor.
