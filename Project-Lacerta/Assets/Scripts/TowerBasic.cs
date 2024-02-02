@@ -6,18 +6,23 @@ public class TowerBasic : TowerBase
 	[SerializeField] GameObject projectile; 
 	[SerializeField] int damage; 
 
-	new void Update()
+	protected override void Update()
 	{
-		if (!checkDone)
-		{ 
-			if (enemiesWithinRange.Count > 0)
-			{
-				enemyTarget = enemiesWithinRange[0]; 
-				ShootAtEnemy(); 
-			}
+		if (enemiesWithinRange.Count > 0)
+		{
+			enemyTarget = enemiesWithinRange[0]; 
 		}
 
 		base.Update(); 
+	}
+
+	// Making this separate from just a straight up shooting function just in case we want to do something other than shooting with a tower type 
+	protected override void IntervalEvent()
+	{
+		if (enemyTarget)
+		{
+			ShootAtEnemy(); 
+		}
 	}
 
 	// Adding the attack mechanics to the child classes in case we want to have unique behavior for some of these. 

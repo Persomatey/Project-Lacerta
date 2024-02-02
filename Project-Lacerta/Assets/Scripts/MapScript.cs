@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class MapScript : MonoBehaviour
 {
+	[SerializeField] int maxAllowedEnemies; 
 	[SerializeField] bool loopingWaves; 
 	[SerializeField] Transform[] routes; 
 	[SerializeField] WaveSO wave;
@@ -33,16 +34,34 @@ public class MapScript : MonoBehaviour
 
 	IEnumerator StartWave()
 	{
+		Debug.Log("Starting wave"); 
+
+		
+
 		for(int i = 0; i < wave.enemyPrefabsInOrder.Length; i++)
 		{
 			yield return new WaitForSeconds(wave.enemyPrefabTimes[i]); 
+
+			while (EnemyCount() >= maxAllowedEnemies) // if there are too many enemies on screen, then wait a second... 
+			{
+				Debug.Log("too many enemies, wait a sec..."); 
+				yield return new WaitForSeconds(1); 
+			}
+
 			GameObject newEnem = Instantiate(wave.enemyPrefabsInOrder[i], routes[0].GetChild(0).position, transform.rotation); 
 			newEnem.GetComponent<EnemyBase>().SetUpEnemy(routes); 
 		}
 
 		if (loopingWaves)
 		{
+			yield return new WaitForSeconds(wave.enemyPrefabTimes[wave.enemyPrefabTimes.Length - 1] * 2); 
 			StartCoroutine(StartWave()); 
 		}
+	}
+
+	int EnemyCount()
+	{
+		EnemyBase[] enemies = GameObject.FindObjectsOfType<EnemyBase>(); 
+		return enemies.Length; 
 	}
 }

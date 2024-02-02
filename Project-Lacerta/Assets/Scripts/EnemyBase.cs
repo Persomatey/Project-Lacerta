@@ -69,6 +69,7 @@ public class EnemyBase : MonoBehaviour
 		{
 			//routeToGo = 0; 
 			traversedMap = true; 
+			EnemyAttack(); 
 		}
 
 		coroutineAllowed = true; 
@@ -92,6 +93,14 @@ public class EnemyBase : MonoBehaviour
 	{
 		yield return new WaitForEndOfFrame(); 
 		GameObject.Find("MapPlane").GetComponent<MapScript>().IncreaseGold(gold); 
+		Destroy(gameObject); 
+	}
+
+	// Enemy made it all the way across
+	void EnemyAttack()
+	{
+		Debug.Log("Enemy made it all the way (oh no!)"); 
+		// TODO: Deal damage to player
 		Destroy(gameObject); 
 	}
 }

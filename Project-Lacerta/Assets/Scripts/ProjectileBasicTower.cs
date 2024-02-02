@@ -6,16 +6,35 @@ public class ProjectileBasicTower : MonoBehaviour
 {
 	[SerializeField] int damage;
 	[SerializeField] float speed = 1; 
+	[SerializeField] Transform sprite; 
 	Transform target;
+
+	float rotSpeed; 
+	float rotInterval = 0.0001f; 
+	float rotAmount = 1f; 
+	float timePassed = 0f; 
 
 	private void Update()
 	{
+		if (!target)
+		{
+			Destroy(gameObject); 
+		}
+
 		transform.position = Vector3.MoveTowards(transform.position, target.position, speed); 
+		
+		timePassed += Time.deltaTime; 
+		if (timePassed > rotInterval)
+		{
+			timePassed = 0; 
+			sprite.transform.rotation = Quaternion.Euler( new Vector3(90, sprite.transform.rotation.eulerAngles.y + rotAmount, 0) );  
+		}
 	}
 
 	private void OnCollisionEnter(Collision col)
 	{
-		if (col.transform && col.transform.parent.GetComponent<EnemyBase>())
+		//if (col.transform && col.transform.parent.GetComponent<EnemyBase>())
+		if (col.transform && col.transform.parent == target)
 		{
 			col.transform.parent.GetComponent<EnemyBase>().DamageEnemy(damage); 
 			Destroy(gameObject); 

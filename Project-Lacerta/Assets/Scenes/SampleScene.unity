@@ -1185,7 +1185,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c30ee19b03d4a444ab0070030261aa60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loopingWaves: 0
+  maxAllowedEnemies: 15
+  loopingWaves: 1
   routes:
   - {fileID: 1630859824}
   - {fileID: 1846626620}

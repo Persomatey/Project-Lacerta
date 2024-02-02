@@ -27,6 +27,8 @@ public class BuildingSpot : MonoBehaviour
 		{
 			BuildTowerC(); 
 		}
+
+		transform.Find("Sprite").GetComponent<SpriteRenderer>().enabled = !towerBuiltHere; 
 	}
 
 	// Builds a TowerBasic at this location 

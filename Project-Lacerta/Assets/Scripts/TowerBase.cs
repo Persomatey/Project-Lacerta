@@ -8,14 +8,14 @@ public class TowerBase : MonoBehaviour
 	[SerializeField] float towerRange; 
 	EnemyBase[] enemies; 
 	protected List<EnemyBase> enemiesWithinRange; 
-	protected bool checkDone = false; 
+	[SerializeField] protected bool checkDone = false; 
 
 	protected void Start()
 	{
 		enemiesWithinRange = new List<EnemyBase>(); 
 	}
 
-	protected void Update()
+	protected virtual void Update()
 	{
 		if (!checkDone)
 		{
@@ -44,8 +44,18 @@ public class TowerBase : MonoBehaviour
 
 	IEnumerator ResetCooldown()
 	{
-		yield return new WaitForSeconds(cooldown); 
-		checkDone = false; 
+		if (checkDone)
+		{
+			IntervalEvent(); 
+			yield return new WaitForSeconds(cooldown); 
+			checkDone = false; 
+		}
+	}
+
+	// leaving this blank becaause it'll be overriden by the child clas anyways  
+	protected virtual void IntervalEvent()
+	{
+
 	}
 
 	// Just to visualize the radius in editor.
