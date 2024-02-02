@@ -36,8 +36,6 @@ public class MapScript : MonoBehaviour
 	{
 		Debug.Log("Starting wave"); 
 
-		
-
 		for(int i = 0; i < wave.enemyPrefabsInOrder.Length; i++)
 		{
 			yield return new WaitForSeconds(wave.enemyPrefabTimes[i]); 
@@ -49,7 +47,7 @@ public class MapScript : MonoBehaviour
 			}
 
 			GameObject newEnem = Instantiate(wave.enemyPrefabsInOrder[i], routes[0].GetChild(0).position, transform.rotation); 
-			newEnem.GetComponent<EnemyBase>().SetUpEnemy(routes); 
+			newEnem.GetComponent<EnemyBase>().SetUpEnemy(this, routes); 
 		}
 
 		if (loopingWaves)

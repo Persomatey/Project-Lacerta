@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class EnemyBase : MonoBehaviour
 {
-	[SerializeField] Transform[] routes; 
+	MapScript mapScript; 
+	Transform[] routes; 
 	int routeToGo = 0; 
 	float tParam = 0f; 
 	bool coroutineAllowed = false; 
@@ -18,8 +19,9 @@ public class EnemyBase : MonoBehaviour
 	float EnemyOffset = 1.0f; 
 
 	// This gets called by the MapScript that instantiates enemies 
-	public void SetUpEnemy(Transform[] pRoutes)
+	public void SetUpEnemy(MapScript pScript, Transform[] pRoutes)
 	{
+		mapScript = pScript; 
 		routes = pRoutes; 
 		coroutineAllowed = true; 
 	}
@@ -92,7 +94,7 @@ public class EnemyBase : MonoBehaviour
 	IEnumerator EnemyDeathSequence()
 	{
 		yield return new WaitForEndOfFrame(); 
-		GameObject.Find("MapPlane").GetComponent<MapScript>().IncreaseGold(gold); 
+		mapScript.IncreaseGold(gold); 
 		Destroy(gameObject); 
 	}
 

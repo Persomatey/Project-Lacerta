@@ -48,6 +48,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldown: 1
   towerRange: 2
+  enemiesWithinRange: []
+  checkDone: 0
   projectile: {fileID: 1796876321083722405, guid: 9197330e12670c04fb05d707739729fa,
     type: 3}
   damage: 1
@@ -184,7 +186,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3464938520664835601}

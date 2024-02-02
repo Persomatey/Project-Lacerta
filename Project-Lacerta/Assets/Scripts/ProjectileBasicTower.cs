@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ProjectileBasicTower : MonoBehaviour
 {
-	[SerializeField] int damage;
+	int damage = 0;
 	[SerializeField] float speed = 1; 
 	[SerializeField] Transform sprite; 
 	Transform target;
@@ -12,16 +12,36 @@ public class ProjectileBasicTower : MonoBehaviour
 	float rotSpeed; 
 	float rotInterval = 0.0001f; 
 	float rotAmount = 1f; 
-	float timePassed = 0f; 
+	float timePassed = 0f;
+
+	private void Start()
+	{
+		Destroy(gameObject, 3f); 
+	}
 
 	private void Update()
 	{
-		if (!target)
+		if (damage == 0)
 		{
+			return; 
+		}
+
+		if (target == null)
+		{
+			Debug.Log("Destroying this proj because null target"); 
 			Destroy(gameObject); 
 		}
 
-		transform.position = Vector3.MoveTowards(transform.position, target.position, speed); 
+		if (target != null && Vector3.Distance(transform.position, target.position) < 0.1f)
+		{
+			target.GetComponent<EnemyBase>().DamageEnemy(damage); 
+			Destroy(gameObject); 
+		}
+
+		if (target != null)
+		{
+			transform.position = Vector3.MoveTowards(transform.position, target.position, speed); 
+		}
 		
 		timePassed += Time.deltaTime; 
 		if (timePassed > rotInterval)
@@ -31,15 +51,15 @@ public class ProjectileBasicTower : MonoBehaviour
 		}
 	}
 
-	private void OnCollisionEnter(Collision col)
-	{
-		//if (col.transform && col.transform.parent.GetComponent<EnemyBase>())
-		if (col.transform && col.transform.parent == target)
-		{
-			col.transform.parent.GetComponent<EnemyBase>().DamageEnemy(damage); 
-			Destroy(gameObject); 
-		}
-	}
+	//private void OnCollisionEnter(Collision col)
+	//{
+	//	//if (col.transform && col.transform.parent.GetComponent<EnemyBase>())
+	//	if (col.transform && col.transform.parent == target)
+	//	{
+	//		col.transform.parent.GetComponent<EnemyBase>().DamageEnemy(damage); 
+	//		Destroy(gameObject); 
+	//	}
+	//}
 	
 	// This gets called by the tower that spawns it to set the damage and target and stuff. 
 	// I figured I'd have the tower decide the damage it deals instead of the projectile itself in case we want to be able to upgrade towers later on. 

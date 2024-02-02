@@ -7,12 +7,14 @@ public class TowerBase : MonoBehaviour
 	[SerializeField] float cooldown; 
 	[SerializeField] float towerRange; 
 	EnemyBase[] enemies; 
-	protected List<EnemyBase> enemiesWithinRange; 
+	[SerializeField] protected List<EnemyBase> enemiesWithinRange; 
 	[SerializeField] protected bool checkDone = false; 
+	float tempRandFloat; 
 
 	protected void Start()
 	{
 		enemiesWithinRange = new List<EnemyBase>(); 
+		tempRandFloat = Random.Range(0f, 1f); 
 	}
 
 	protected virtual void Update()
@@ -27,7 +29,6 @@ public class TowerBase : MonoBehaviour
 	void FindAllEnemies()
 	{
 		checkDone = true; 
-
 		enemies = GameObject.FindObjectsOfType<EnemyBase>(); 
 		enemiesWithinRange.Clear(); 
 
@@ -46,6 +47,8 @@ public class TowerBase : MonoBehaviour
 	{
 		if (checkDone)
 		{
+			yield return new WaitForSeconds(tempRandFloat); 
+			tempRandFloat = 0f; 
 			IntervalEvent(); 
 			yield return new WaitForSeconds(cooldown); 
 			checkDone = false; 
