@@ -11,25 +11,39 @@ public class EnemyBase : MonoBehaviour
 	bool coroutineAllowed = false; 
 	bool traversedMap = false; 
 
-	[SerializeField] float speed = 0.5f;  
 	[SerializeField] int health; 
+	public int Health => health; 
 	[SerializeField] int damage; 
+	public int Damage => damage; 
+	[SerializeField] float speed = 0.5f;  
 	[SerializeField] int gold; 
+	int level = 0; 
+	public int Level => level; 
 
 	float EnemyOffset = 1.0f; 
 
 	// This gets called by the MapScript that instantiates enemies 
-	public void SetUpEnemy(MapScript pScript, Transform[] pRoutes)
+	public void SetUpEnemy(MapScript pScript, Transform[] pRoutes, int pLevel)
 	{
 		mapScript = pScript; 
 		routes = pRoutes; 
 		coroutineAllowed = true; 
+		level = pLevel; 
+		health += Level; 
+		gold += level; 
 	}
 
 	void Update()
 	{
 		FollowBezierCurve(); 
 		HealthCheck(); 
+
+		if (transform.position.x > 11) // Attack if the enemy's position reaches the specified area 
+		{
+			//routeToGo = 0; 
+			traversedMap = true; 
+			EnemyAttack(); 
+		}
 	}
 
 	void FollowBezierCurve()
@@ -67,12 +81,12 @@ public class EnemyBase : MonoBehaviour
 		tParam = 0f; 
 		routeToGo += 1; 
 
-		if (routeToGo > routes.Length - 1)
-		{
-			//routeToGo = 0; 
-			traversedMap = true; 
-			EnemyAttack(); 
-		}
+		//if (routeToGo > routes.Length - 1) // Attack if the enemy finishd its final route 
+		//{
+		//	//routeToGo = 0; 
+		//	traversedMap = true; 
+		//	EnemyAttack(); 
+		//}
 
 		coroutineAllowed = true; 
 	}
@@ -84,7 +98,7 @@ public class EnemyBase : MonoBehaviour
 
 	void HealthCheck()
 	{
-		if (health <= 0)
+		if (Health <= 0)
 		{
 			StartCoroutine(EnemyDeathSequence()); 
 		}
@@ -101,8 +115,8 @@ public class EnemyBase : MonoBehaviour
 	// Enemy made it all the way across
 	void EnemyAttack()
 	{
-		Debug.Log("Enemy made it all the way (oh no!)"); 
-		// TODO: Deal damage to player
+		Debug.Log("<color=red>Enemy made it all the way (oh no!)</color>"); 
+		mapScript.DecreaseGold(gold); 
 		Destroy(gameObject); 
 	}
 }

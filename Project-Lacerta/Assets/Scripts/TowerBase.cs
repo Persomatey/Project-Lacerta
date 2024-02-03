@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class TowerBase : MonoBehaviour
@@ -10,11 +11,16 @@ public class TowerBase : MonoBehaviour
 	[SerializeField] protected List<EnemyBase> enemiesWithinRange; 
 	[SerializeField] protected bool checkDone = false; 
 	float tempRandFloat; 
+	[SerializeField] public int towerCost; 
+	protected int towerLevel; 
+	[SerializeField] TextMeshPro lvlText; 
+	[SerializeField] int damageStepPerLevel; 
 
 	protected void Start()
 	{
 		enemiesWithinRange = new List<EnemyBase>(); 
 		tempRandFloat = Random.Range(0f, 1f); 
+		towerLevel = 0; 
 	}
 
 	protected virtual void Update()
@@ -22,6 +28,11 @@ public class TowerBase : MonoBehaviour
 		if (!checkDone)
 		{
 			FindAllEnemies(); 
+		}
+
+		if (towerLevel > 0)
+		{
+			lvlText.text = $"+{towerLevel+1}"; 
 		}
 	}
 
@@ -67,5 +78,22 @@ public class TowerBase : MonoBehaviour
 	{
 		Gizmos.color = Color.yellow;
 		Gizmos.DrawSphere(this.transform.position, towerRange);
+	}
+
+	private void OnMouseDown()
+	{
+		UpgradeTower(); 
+	}
+
+	void UpgradeTower()
+	{
+		int upgradeCost = towerCost + (damageStepPerLevel * towerLevel); 
+
+		if ( GameObject.Find("Map").GetComponent<MapScript>().Gold > upgradeCost )
+		{
+			GameObject.Find("Map").GetComponent<MapScript>().DecreaseGold( upgradeCost ); 
+			towerLevel++; 
+			Debug.Log($"Tower upgraded to {towerLevel}"); 
+		}
 	}
 }

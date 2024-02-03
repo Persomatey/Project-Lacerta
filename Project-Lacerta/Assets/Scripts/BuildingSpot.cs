@@ -13,20 +13,20 @@ public class BuildingSpot : MonoBehaviour
 	private void Update()
 	{
 		// Temp for debugging purposes. Pressing 1, 2, 3 at the top of the keyboard will build a tower 
-		if (Input.GetKeyDown(KeyCode.Alpha1))
-		{
-			BuildTowerA(); 
-		}
+		//if (Input.GetKeyDown(KeyCode.Alpha1))
+		//{
+		//	BuildTowerA(); 
+		//}
 
-		if (Input.GetKeyDown(KeyCode.Alpha2))
-		{
-			BuildTowerB(); 
-		}
+		//if (Input.GetKeyDown(KeyCode.Alpha2))
+		//{
+		//	BuildTowerB(); 
+		//}
 
-		if (Input.GetKeyDown(KeyCode.Alpha3))
-		{
-			BuildTowerC(); 
-		}
+		//if (Input.GetKeyDown(KeyCode.Alpha3))
+		//{
+		//	BuildTowerC(); 
+		//}
 
 		transform.Find("Sprite").GetComponent<SpriteRenderer>().enabled = !towerBuiltHere; 
 	}
@@ -34,16 +34,25 @@ public class BuildingSpot : MonoBehaviour
 	// Builds a TowerBasic at this location 
 	public void BuildTowerA()
 	{
-		if (!towerBuiltHere)
+		if (GameObject.Find("Map").GetComponent<MapScript>().Gold > towerA.GetComponent<TowerBase>().towerCost)
 		{
-			Debug.Log($"Building a {towerA.name} here"); 
-			Instantiate(towerA, transform.position, transform.rotation, transform); 
-			towerBuiltHere = true; 
+			if (!towerBuiltHere)
+			{
+				Debug.Log($"Building a {towerA.name} here"); 
+				Instantiate(towerA, transform.position, transform.rotation, transform); 
+				GameObject.Find("Map").GetComponent<MapScript>().DecreaseGold(towerA.GetComponent<TowerBase>().towerCost); 
+				towerBuiltHere = true; 
+			}
+			else
+			{
+				Debug.Log("<color=red>Cannot build a tower here because one already exists!</color>"); 
+			}
 		}
 		else
 		{
-			Debug.Log("<color=red>Cannot build a tower here because one already exists!</color>"); 
+			Debug.Log("<color=red>Cannot build a tower here because you don't have enough gold!</color>"); 
 		}
+		
 	}
 
 	// Builds a ___ at this location 
@@ -74,5 +83,11 @@ public class BuildingSpot : MonoBehaviour
 		{
 			Debug.Log("<color=red>Cannot build a tower here because one already exists!</color>"); 
 		}
+	}
+
+	private void OnMouseDown()
+	{
+		Debug.Log($"Tower {gameObject.name} has been clicked on."); 
+		BuildTowerA(); 
 	}
 }

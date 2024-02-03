@@ -28,8 +28,7 @@ public class TowerBasic : TowerBase
 	// Adding the attack mechanics to the child classes in case we want to have unique behavior for some of these. 
 	void ShootAtEnemy()
 	{
-		Debug.Log("ShootAtEnemy()"); 
 		GameObject proj = Instantiate(projectile, transform.position, transform.rotation); 
-		proj.GetComponent<ProjectileBasicTower>().SetupProjectile(enemyTarget.transform, damage); 
+		proj.GetComponent<ProjectileBasicTower>().SetupProjectile(enemyTarget.transform, damage + towerLevel); 
 	}
 }

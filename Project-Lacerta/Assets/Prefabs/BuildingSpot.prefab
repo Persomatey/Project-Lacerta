@@ -116,6 +116,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2374284484723995470}
   - component: {fileID: 8098781528888991339}
+  - component: {fileID: 6861888955590881202}
   m_Layer: 0
   m_Name: BuildingSpot
   m_TagString: Untagged
@@ -155,6 +156,27 @@ MonoBehaviour:
   towerA: {fileID: 5487625396166503819, guid: b09f69ed1bf64ca45af9a7c732ff0394, type: 3}
   towerB: {fileID: 0}
   towerC: {fileID: 0}
+--- !u!65 &6861888955590881202
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5871940192009922611}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 0.1, z: 1}
+  m_Center: {x: 0, y: 2, z: 0}
 --- !u!1 &9006094565060356844
 GameObject:
   m_ObjectHideFlags: 0

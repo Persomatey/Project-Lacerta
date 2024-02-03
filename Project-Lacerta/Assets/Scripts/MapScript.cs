@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -9,18 +10,32 @@ public class MapScript : MonoBehaviour
 	[SerializeField] Transform[] routes; 
 	[SerializeField] WaveSO wave;
 	[SerializeField] TextMeshProUGUI goldText; 
-	[SerializeField] private int gold; 
+	[SerializeField] TextMeshProUGUI timeText; 
+	private int gold; 
 	public int Gold => gold; 
+	int waveCount = 0; 
+	public int WaveCount => waveCount;
 
 	private void Start()
 	{
 		StartCoroutine(StartWave()); 
-		gold = 100; 
+		gold = 50; 
 	}
 
 	private void Update()
 	{
+		UpdateGoldAndTimeText(); 
+	}
+
+	private void UpdateGoldAndTimeText()
+	{
+		// Update Gold Text 
 		goldText.text = $"{Gold}"; 
+
+		// Update Time Text 
+		string mins = $"{TimeSpan.FromSeconds(Time.time).Minutes}"; 
+		string secs = (TimeSpan.FromSeconds(Time.time).Seconds < 10) ? $"0{TimeSpan.FromSeconds(Time.time).Seconds}" : $"{TimeSpan.FromSeconds(Time.time).Seconds}"; 
+		timeText.text = $"{mins}:{secs}"; 
 	}
 
 	public void IncreaseGold(int pGoldInc)
@@ -28,7 +43,7 @@ public class MapScript : MonoBehaviour
 		gold += pGoldInc; 
 	}
 
-	public void SpendGold(int pGoldDec)
+	public void DecreaseGold(int pGoldDec)
 	{
 		if (Gold >= pGoldDec)
 		{
@@ -37,12 +52,14 @@ public class MapScript : MonoBehaviour
 		else
 		{
 			Debug.Log($"Cannot decrease gold by {pGoldDec} because current gold {Gold} is less than that."); 
+			// Start lose sequence
 		}
 	}
 
 	IEnumerator StartWave()
 	{
-		Debug.Log("Starting wave"); 
+		Debug.Log($"Starting wave {waveCount}"); 
+		waveCount++; 
 
 		for(int i = 0; i < wave.enemyPrefabsInOrder.Length; i++)
 		{
@@ -50,12 +67,11 @@ public class MapScript : MonoBehaviour
 
 			while (EnemyCount() >= maxAllowedEnemies) // if there are too many enemies on screen, then wait a second... 
 			{
-				Debug.Log("too many enemies, wait a sec..."); 
 				yield return new WaitForSeconds(1); 
 			}
 
 			GameObject newEnem = Instantiate(wave.enemyPrefabsInOrder[i], routes[0].GetChild(0).position, transform.rotation); 
-			newEnem.GetComponent<EnemyBase>().SetUpEnemy(this, routes); 
+			newEnem.GetComponent<EnemyBase>().SetUpEnemy(this, routes, waveCount); 
 		}
 
 		if (loopingWaves)
