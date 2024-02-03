@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class MapScript : MonoBehaviour
@@ -7,12 +8,19 @@ public class MapScript : MonoBehaviour
 	[SerializeField] bool loopingWaves; 
 	[SerializeField] Transform[] routes; 
 	[SerializeField] WaveSO wave;
+	[SerializeField] TextMeshProUGUI goldText; 
 	[SerializeField] private int gold; 
 	public int Gold => gold; 
 
 	private void Start()
 	{
 		StartCoroutine(StartWave()); 
+		gold = 100; 
+	}
+
+	private void Update()
+	{
+		goldText.text = $"{Gold}"; 
 	}
 
 	public void IncreaseGold(int pGoldInc)
