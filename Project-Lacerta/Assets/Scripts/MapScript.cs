@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class MapScript : MonoBehaviour
 {
+	[SerializeField] GameObject gameOverMenu; 
 	[SerializeField] int maxAllowedEnemies; 
 	[SerializeField] bool loopingWaves; 
 	[SerializeField] Transform[] routes; 
@@ -25,6 +26,18 @@ public class MapScript : MonoBehaviour
 	private void Update()
 	{
 		UpdateGoldAndTimeText(); 
+		LoseChecker(); 
+	}
+
+	void LoseChecker()
+	{
+		if (Gold <= 0)
+		{
+			gold = 0; 
+			Debug.Log("<color=red>You've lost!</color>"); 
+			Time.timeScale = 0; 
+			gameOverMenu.SetActive(true); 
+		}
 	}
 
 	private void UpdateGoldAndTimeText()
