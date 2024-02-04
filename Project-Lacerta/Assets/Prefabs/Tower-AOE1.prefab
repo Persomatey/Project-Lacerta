@@ -248,7 +248,7 @@ MonoBehaviour:
   towerCost: 20
   lvlText: {fileID: 0}
   damageStepPerLevel: 0
-  projectile: {fileID: 1796876321083722405, guid: c0ba884d327e2534ab82bbf914f5fa8b,
+  projectile: {fileID: 1796876321083722405, guid: 5dbf73b984e0a5049837d3d0cf03b364,
     type: 3}
   damage: 1
   blastRadius: 2
