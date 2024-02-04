@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class ProjectileAOETower : MonoBehaviour
 {
-	int blastRadius = 5;
+	float blastRadius = 5f;
 	int damage = 0;
 	[SerializeField] float speed = 1; 
 	[SerializeField] Transform sprite; 
 	[SerializeField] GameObject boom;
 	Transform target;
-
+	Vector3 blastPosition;
 	public float scale = 2.0f;
  
  	float rotInterval = 0.0001f; 
@@ -58,26 +58,23 @@ public class ProjectileAOETower : MonoBehaviour
 	void OnExplode()
     {
 		EnemyBase[] enemies = GameObject.FindObjectsOfType<EnemyBase>();
-		GameObject aOEBoom = Instantiate(boom, transform);
-		aOEBoom.transform.localScale = new Vector3(blastRadius, blastRadius, blastRadius);
 		// compiler complained about this one vvvvv
 		//aOEBoom.transform.SetScale(blastRadius, blastRadius, blastRadius);
-
+		
+        GameObject fire = Instantiate(boom, gameObject.transform);
+		fire.transform.localScale = new Vector3(blastRadius, blastRadius, blastRadius);
         foreach (EnemyBase enemy in enemies)
         {
             if (Vector3.Distance(transform.position, enemy.transform.position) <= blastRadius)
             {
-				GameObject fire = Instantiate(boom, enemy.transform);
-				fire.transform.localScale = new Vector3(scale, scale, scale);
                 enemy.GetComponent<EnemyBase>().DamageEnemy(damage);
-				Destroy(fire, 3.0f);
             }
         }
 
     }
 
 	// not sure if this will work to visualize the explosion
-	    private void OnDrawGizmosSelected()
+	private void OnDrawGizmosSelected()
     {
         //explosion
         Gizmos.color = Color.red;
@@ -91,5 +88,6 @@ public class ProjectileAOETower : MonoBehaviour
 		target = pTarget; 
 		damage = pDamage; 
 		blastRadius = pBlastRadius;
+		blastPosition = target.position;
 	}
 }
