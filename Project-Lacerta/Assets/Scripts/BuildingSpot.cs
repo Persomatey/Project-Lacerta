@@ -88,6 +88,7 @@ public class BuildingSpot : MonoBehaviour
 	private void OnMouseDown()
 	{
 		Debug.Log($"Tower {gameObject.name} has been clicked on."); 
-		BuildTowerA(); 
+		//BuildTowerA(); 
+		BuildTowerB(); 
 	}
 }
