@@ -204,6 +204,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0.05
   sprite: {fileID: 7851046811690341886}
+  boom: {fileID: 1796876321083722405, guid: 3f439ecd372019949bd6eba029d44c49, type: 3}
+  scale: 2
 --- !u!1 &8101720723934737286
 GameObject:
   m_ObjectHideFlags: 0

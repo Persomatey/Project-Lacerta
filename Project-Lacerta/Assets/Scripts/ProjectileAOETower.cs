@@ -8,7 +8,10 @@ public class ProjectileAOETower : MonoBehaviour
 	int damage = 0;
 	[SerializeField] float speed = 1; 
 	[SerializeField] Transform sprite; 
+	[SerializeField] GameObject boom;
 	Transform target;
+
+	public float scale = 2.0f;
  
  	float rotInterval = 0.0001f; 
 	float rotAmount = 1f; 
@@ -52,15 +55,22 @@ public class ProjectileAOETower : MonoBehaviour
 		}
 	}
 
-		void OnExplode()
+	void OnExplode()
     {
-        EnemyBase[] enemies = GameObject.FindObjectsOfType<EnemyBase>();
+		EnemyBase[] enemies = GameObject.FindObjectsOfType<EnemyBase>();
+		GameObject aOEBoom = Instantiate(boom, transform);
+		aOEBoom.transform.localScale = new Vector3(blastRadius, blastRadius, blastRadius);
+		// compiler complained about this one vvvvv
+		//aOEBoom.transform.SetScale(blastRadius, blastRadius, blastRadius);
 
         foreach (EnemyBase enemy in enemies)
         {
             if (Vector3.Distance(transform.position, enemy.transform.position) <= blastRadius)
             {
-              enemy.GetComponent<EnemyBase>().DamageEnemy(damage);
+				GameObject fire = Instantiate(boom, enemy.transform);
+				fire.transform.localScale = new Vector3(scale, scale, scale);
+                enemy.GetComponent<EnemyBase>().DamageEnemy(damage);
+				Destroy(fire, 3.0f);
             }
         }
 
