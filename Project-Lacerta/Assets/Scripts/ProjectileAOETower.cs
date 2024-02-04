@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class ProjectileAOETower : MonoBehaviour
 {
-	float blastRadius = 5f;
+	[SerializeField] float blastRadius = 1f;
 	int damage = 0;
 	[SerializeField] float speed = 1; 
 	[SerializeField] Transform sprite; 
 	[SerializeField] GameObject boom;
 	Transform target;
 	Vector3 blastPosition;
-	public float scale = 2.0f;
  
  	float rotInterval = 0.0001f; 
 	float rotAmount = 1f; 
@@ -59,7 +58,7 @@ public class ProjectileAOETower : MonoBehaviour
     {
 		GameObject fire = Instantiate(boom, blastPosition, Quaternion.identity);
 		fire.GetComponent<Explosion>().GiveBlastRadius(blastRadius);
-
+		
         EnemyBase[] enemies = GameObject.FindObjectsOfType<EnemyBase>();
         foreach (EnemyBase enemy in enemies)
         {
