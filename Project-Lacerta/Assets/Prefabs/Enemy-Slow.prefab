@@ -315,9 +315,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 10
   damage: 2
-  speed: 0.05
+  curSpeed: 0.1
   gold: 5
   levelIncrement: 0
+  stunned: 0
 --- !u!1 &7957197611681071375
 GameObject:
   m_ObjectHideFlags: 0
