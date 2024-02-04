@@ -15,13 +15,16 @@ public class EnemyBase : MonoBehaviour
 	public int Health => health; 
 	[SerializeField] int damage; 
 	public int Damage => damage; 
-	[SerializeField] float speed = 0.5f;  
+	[SerializeField] float curSpeed = 0.5f;  
+	float setSpeed; 
 	[SerializeField] int gold; 
 	int level = 0; 
 	public int Level => level; 
 	[SerializeField] int levelIncrement; 
 
 	float EnemyOffset = 1.0f; 
+
+	public bool stunned = false; 
 
 	// This gets called by the MapScript that instantiates enemies 
 	public void SetUpEnemy(MapScript pScript, Transform[] pRoutes, int pLevel)
@@ -32,10 +35,21 @@ public class EnemyBase : MonoBehaviour
 		level = pLevel; 
 		health += (Level * levelIncrement); 
 		gold += (level * levelIncrement); 
+
+		setSpeed = curSpeed; 
 	}
 
 	void Update()
 	{
+		if (stunned)
+		{
+			curSpeed = 0; 
+		}
+		else
+		{
+			curSpeed = setSpeed; 
+		}
+		
 		FollowBezierCurve(); 
 		HealthCheck(); 
 
@@ -67,7 +81,7 @@ public class EnemyBase : MonoBehaviour
 
 		while (tParam < 1)
 		{
-			tParam += Time.deltaTime * speed; 
+			tParam += Time.deltaTime * curSpeed; 
 
 			transform.position = 
 				Mathf.Pow(1 - tParam, 3) * p0 + 
@@ -119,5 +133,17 @@ public class EnemyBase : MonoBehaviour
 		Debug.Log("<color=red>Enemy made it all the way (oh no!)</color>"); 
 		mapScript.DecreaseGold(gold); 
 		Destroy(gameObject); 
+	}
+
+	public void Stun(float stunDuration)
+	{
+		stunned = true; 
+		StartCoroutine(DelayUnstunEnemy(stunDuration)); 
+	}
+
+	IEnumerator DelayUnstunEnemy(float stunDuratio)
+	{
+		yield return new WaitForSeconds(stunDuratio); 
+		stunned = false; 
 	}
 }

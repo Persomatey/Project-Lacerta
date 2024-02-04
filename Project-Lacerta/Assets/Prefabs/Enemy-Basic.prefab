@@ -237,11 +237,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff2d32020c8377d4588eb9e3842a7cd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  routes: []
-  speed: 0.1
   health: 5
   damage: 1
+  curSpeed: 0.2
   gold: 5
+  levelIncrement: 0
+  stunned: 0
 --- !u!1 &6796219794211306024
 GameObject:
   m_ObjectHideFlags: 0

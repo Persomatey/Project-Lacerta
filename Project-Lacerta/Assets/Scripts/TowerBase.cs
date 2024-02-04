@@ -16,7 +16,7 @@ public class TowerBase : MonoBehaviour
 	[SerializeField] TextMeshPro lvlText; 
 	[SerializeField] int damageStepPerLevel; 
 
-	protected void Start()
+	protected virtual void Start()
 	{
 		enemiesWithinRange = new List<EnemyBase>(); 
 		tempRandFloat = Random.Range(0f, 1f); 

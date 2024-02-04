@@ -180,9 +180,9 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1389412915, guid: 695af0a40de496e46a4e8b6633dcaf38, type: 3}
+  m_Sprite: {fileID: 1790213901, guid: 695af0a40de496e46a4e8b6633dcaf38, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
@@ -257,7 +257,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towerA: {fileID: 5487625396166503819, guid: b09f69ed1bf64ca45af9a7c732ff0394, type: 3}
   towerB: {fileID: 5487625396166503819, guid: 30f13ed48d95b594b84bf2138e4e0d29, type: 3}
-  towerC: {fileID: 0}
+  towerC: {fileID: 5487625396166503819, guid: c6ed0fedd4a6b1349be25224b680bf7d, type: 3}
   buttonA: {fileID: 6113746507592009070}
   buttonB: {fileID: 6227056649899064192}
   buttonC: {fileID: 9113927987195563284}
