@@ -39,7 +39,7 @@ public class ProjectileAOETower : MonoBehaviour
 		{
 			target.GetComponent<EnemyBase>().DamageEnemy(damage);
 			OnExplode();
-			Destroy(gameObject); 
+			Destroy(gameObject, 3f); 
 		}
 
 		if (target != null)
@@ -57,12 +57,10 @@ public class ProjectileAOETower : MonoBehaviour
 
 	void OnExplode()
     {
-		EnemyBase[] enemies = GameObject.FindObjectsOfType<EnemyBase>();
-		// compiler complained about this one vvvvv
-		//aOEBoom.transform.SetScale(blastRadius, blastRadius, blastRadius);
-		
-        GameObject fire = Instantiate(boom, gameObject.transform);
-		fire.transform.localScale = new Vector3(blastRadius, blastRadius, blastRadius);
+		GameObject fire = Instantiate(boom, blastPosition, Quaternion.identity);
+		fire.GetComponent<Explosion>().GiveBlastRadius(blastRadius);
+
+        EnemyBase[] enemies = GameObject.FindObjectsOfType<EnemyBase>();
         foreach (EnemyBase enemy in enemies)
         {
             if (Vector3.Distance(transform.position, enemy.transform.position) <= blastRadius)
@@ -71,14 +69,6 @@ public class ProjectileAOETower : MonoBehaviour
             }
         }
 
-    }
-
-	// not sure if this will work to visualize the explosion
-	private void OnDrawGizmosSelected()
-    {
-        //explosion
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, blastRadius);
     }
 
 	// This gets called by the tower that spawns it to set the damage and target and stuff. 
