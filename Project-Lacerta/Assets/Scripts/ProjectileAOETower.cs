@@ -4,14 +4,19 @@ using UnityEngine;
 
 public class ProjectileAOETower : MonoBehaviour
 {
+	int blastRadius = 5;
 	int damage = 0;
-	[SerializeField] float speed = 2; 
+	[SerializeField] float speed = 1; 
 	[SerializeField] Transform sprite; 
 	Transform target;
  
+ 	float rotInterval = 0.0001f; 
+	float rotAmount = 1f; 
+	float timePassed = 0f;
+
 	private void Start()
 	{
-		Destroy(gameObject, 1.5f); 
+		Destroy(gameObject, 3f); 
 	}
 
 	private void Update()
@@ -34,26 +39,34 @@ public class ProjectileAOETower : MonoBehaviour
 			Destroy(gameObject); 
 		}
 
-	void OnExplode()
-    {
-        GameObject[] enemies = GameObject.FindObjectsOfType<EnemyBase>();
+		if (target != null)
+		{
+			transform.position = Vector3.MoveTowards(transform.position, target.position, speed); 
+		}
 
-        foreach (GameObject enemy in enemies)
+		timePassed += Time.deltaTime; 
+		if (timePassed > rotInterval)
+		{
+			timePassed = 0; 
+			sprite.transform.rotation = Quaternion.Euler( new Vector3(90, sprite.transform.rotation.eulerAngles.y + rotAmount, 0) );  
+		}
+	}
+
+		void OnExplode()
+    {
+        EnemyBase[] enemies = GameObject.FindObjectsOfType<EnemyBase>();
+
+        foreach (EnemyBase enemy in enemies)
         {
-            if (Vector3.Distance(transform.position, target.position) <= blastRadius)
+            if (Vector3.Distance(transform.position, enemy.transform.position) <= blastRadius)
             {
-              target.GetComponent<EnemyBase>().DamageEnemy(damage);
+              enemy.GetComponent<EnemyBase>().DamageEnemy(damage);
             }
         }
 
     }
 
-		if (target != null)
-		{
-			transform.position = Vector3.MoveTowards(transform.position, target.position, speed); 
-		}
-		
-	}
+	// not sure if this will work to visualize the explosion
 	    private void OnDrawGizmosSelected()
     {
         //explosion
