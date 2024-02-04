@@ -154,7 +154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towerA: {fileID: 5487625396166503819, guid: b09f69ed1bf64ca45af9a7c732ff0394, type: 3}
-  towerB: {fileID: 5487625396166503819, guid: 555d13101dab83a44947cff19d2e878d, type: 3}
+  towerB: {fileID: 5487625396166503819, guid: 30f13ed48d95b594b84bf2138e4e0d29, type: 3}
   towerC: {fileID: 0}
 --- !u!65 &6861888955590881202
 BoxCollider:
