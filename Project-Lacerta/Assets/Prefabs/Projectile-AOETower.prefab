@@ -202,10 +202,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2557a79bad47c864cb2eb75d57422165, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.05
+  blastRadius: 1
+  speed: 0.1
   sprite: {fileID: 7851046811690341886}
   boom: {fileID: 1796876321083722405, guid: 3f439ecd372019949bd6eba029d44c49, type: 3}
-  scale: 2
 --- !u!1 &8101720723934737286
 GameObject:
   m_ObjectHideFlags: 0
@@ -385,7 +385,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 813832783, guid: 67da8f7852ca45943b71e41cd551337d, type: 3}
+  m_Sprite: {fileID: 475634523, guid: 67da8f7852ca45943b71e41cd551337d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

@@ -12,16 +12,17 @@ public class ProjectileAOETower : MonoBehaviour
 	Transform target;
 	Vector3 blastPosition;
  
- 	float rotInterval = 0.0001f; 
+ 	float rotInterval = 0.00001f; 
 	float rotAmount = 1f; 
 	float timePassed = 0f;
+	bool explodeOnce = false; 
 
 	private void Start()
 	{
 		Destroy(gameObject, 3f); 
 	}
 
-	private void Update()
+	private void FixedUpdate()
 	{
 		if (damage == 0)
 		{
@@ -37,8 +38,12 @@ public class ProjectileAOETower : MonoBehaviour
 		if (target != null && Vector3.Distance(transform.position, target.position) < 0.1f)
 		{
 			target.GetComponent<EnemyBase>().DamageEnemy(damage);
-			OnExplode();
-			Destroy(gameObject, 3f); 
+			if (!explodeOnce)
+			{
+				explodeOnce = true; 
+				OnExplode();
+			}
+			Destroy(gameObject); 
 		}
 
 		if (target != null)
@@ -46,12 +51,13 @@ public class ProjectileAOETower : MonoBehaviour
 			transform.position = Vector3.MoveTowards(transform.position, target.position, speed); 
 		}
 
-		timePassed += Time.deltaTime; 
-		if (timePassed > rotInterval)
-		{
-			timePassed = 0; 
-			sprite.transform.rotation = Quaternion.Euler( new Vector3(90, sprite.transform.rotation.eulerAngles.y + rotAmount, 0) );  
-		}
+		//timePassed += Time.deltaTime; 
+		//if (timePassed > rotInterval)
+		//{
+		//	Debug.Log("Spin"); 
+		//	timePassed = 0; 
+		//	sprite.transform.rotation = Quaternion.Euler( new Vector3(90, sprite.transform.rotation.eulerAngles.y + rotAmount, 0) );  
+		//}
 	}
 
 	void OnExplode()

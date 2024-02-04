@@ -202,7 +202,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64237e733c2ebb3408209167c48332f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.02
+  sprite: {fileID: 7851046811690341886}
+  speed: 0.1
   stunLength: 5
   target: {fileID: 0}
   activated: 0
@@ -386,7 +387,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 813832783, guid: 67da8f7852ca45943b71e41cd551337d, type: 3}
+  m_Sprite: {fileID: 369505023, guid: 67da8f7852ca45943b71e41cd551337d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
