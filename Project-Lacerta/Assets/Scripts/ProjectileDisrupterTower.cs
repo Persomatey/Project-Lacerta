@@ -10,10 +10,7 @@ public class ProjectileDisrupterTower : MonoBehaviour
 
 	private void Update()
 	{
-		if (target != null)
-		{
-			transform.position = Vector3.MoveTowards(transform.position, target.position, speed); 
-		}
+		
 
 		if (target != null && Vector3.Distance(transform.position, target.position) < 0.1f)
 		{
@@ -26,6 +23,14 @@ public class ProjectileDisrupterTower : MonoBehaviour
 		{
 			Debug.Log("<color=red>My target is dead! Destroying myself!</color>"); 
 			Destroy(gameObject); 
+		}
+	}
+
+	private void FixedUpdate()
+	{
+		if (target != null)
+		{
+			transform.position = Vector3.MoveTowards(transform.position, target.position, speed); 
 		}
 	}
 

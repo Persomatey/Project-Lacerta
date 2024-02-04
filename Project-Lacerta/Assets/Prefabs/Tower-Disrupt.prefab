@@ -342,7 +342,7 @@ MonoBehaviour:
   enemiesWithinRange: []
   checkDone: 0
   towerCost: 25
-  lvlText: {fileID: 0}
+  lvlText: {fileID: 6724028111022967207}
   damageStepPerLevel: 0
   projectile: {fileID: 1796876321083722405, guid: 800235d667b2b9c4babe5e30fbeae393,
     type: 3}

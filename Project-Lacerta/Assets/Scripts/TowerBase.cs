@@ -87,12 +87,17 @@ public class TowerBase : MonoBehaviour
 
 	void UpgradeTower()
 	{
+		Debug.Log("<color=magenta>Upgrade 1</color>"); 
 		int upgradeCost = towerCost + (damageStepPerLevel * towerLevel); 
+		Debug.Log("<color=magenta>Upgrade 2</color>"); 
 
 		if ( GameObject.Find("Map").GetComponent<MapScript>().Gold > upgradeCost )
 		{
+			Debug.Log("<color=magenta>Upgrade 3</color>"); 
 			GameObject.Find("Map").GetComponent<MapScript>().DecreaseGold( upgradeCost ); 
+			Debug.Log("<color=magenta>Upgrade 4</color>"); 
 			towerLevel++; 
+			Debug.Log("<color=magenta>Upgrade 5</color>"); 
 			Debug.Log($"Tower upgraded to {towerLevel}"); 
 		}
 	}

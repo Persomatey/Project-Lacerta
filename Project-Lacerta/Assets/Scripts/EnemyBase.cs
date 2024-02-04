@@ -46,6 +46,11 @@ public class EnemyBase : MonoBehaviour
 
 	void Update()
 	{
+		HealthCheck(); 
+	}
+
+	private void FixedUpdate()
+	{
 		if (stunned)
 		{
 			curSpeed = 0; 
@@ -56,7 +61,6 @@ public class EnemyBase : MonoBehaviour
 		}
 		
 		FollowBezierCurve(); 
-		HealthCheck(); 
 
 		if (transform.position.x > 11) // Attack if the enemy's position reaches the specified area 
 		{
