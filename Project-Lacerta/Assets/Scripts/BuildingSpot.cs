@@ -4,35 +4,58 @@ using UnityEngine;
 
 public class BuildingSpot : MonoBehaviour
 {
+	[Header("Tower Prefabs")]
 	[SerializeField] GameObject towerA; 
 	[SerializeField] GameObject towerB; 
 	[SerializeField] GameObject towerC; 
 
+	[Header("Button References")]
+	[SerializeField] GameObject buttonA; 
+	[SerializeField] GameObject buttonB; 
+	[SerializeField] GameObject buttonC; 
+
 	bool towerBuiltHere = false; 
+	public bool hoveringOverBuildingSpot = false; 
+	public bool hoveringOverButton = false; 
 
 	private void Update()
 	{
-		// Temp for debugging purposes. Pressing 1, 2, 3 at the top of the keyboard will build a tower 
-		//if (Input.GetKeyDown(KeyCode.Alpha1))
-		//{
-		//	BuildTowerA(); 
-		//}
-
-		//if (Input.GetKeyDown(KeyCode.Alpha2))
-		//{
-		//	BuildTowerB(); 
-		//}
-
-		//if (Input.GetKeyDown(KeyCode.Alpha3))
-		//{
-		//	BuildTowerC(); 
-		//}
-
 		transform.Find("Sprite").GetComponent<SpriteRenderer>().enabled = !towerBuiltHere; 
+
+		// DebuggingSpawnTowers(); 
+		DisplayTowerOptions(); 
+	}
+
+	void DebuggingSpawnTowers()
+	{
+		if (Input.GetKeyDown(KeyCode.Alpha1))
+		{
+			BuildTowerA();
+		}
+
+		if (Input.GetKeyDown(KeyCode.Alpha2))
+		{
+			BuildTowerB();
+		}
+
+		if (Input.GetKeyDown(KeyCode.Alpha3))
+		{
+			BuildTowerC();
+		}
+	}
+
+	public void BuildTower(int towerType) 
+	{
+		switch(towerType)
+		{
+			case 0: BuildTowerA(); break;  
+			case 1: BuildTowerB(); break;  
+			case 2: BuildTowerC(); break;  
+		}
 	}
 
 	// Builds a TowerBasic at this location 
-	public void BuildTowerA()
+	void BuildTowerA()
 	{
 		if (GameObject.Find("Map").GetComponent<MapScript>().Gold > towerA.GetComponent<TowerBase>().towerCost)
 		{
@@ -55,40 +78,74 @@ public class BuildingSpot : MonoBehaviour
 		
 	}
 
-	// Builds a ___ at this location 
-	public void BuildTowerB()
+	// Builds an AOE at this location 
+	void BuildTowerB()
 	{
-		if (!towerBuiltHere)
+		if (GameObject.Find("Map").GetComponent<MapScript>().Gold > towerB.GetComponent<TowerBase>().towerCost)
 		{
-			Debug.Log($"Building a {towerB.name} here"); 
-			Instantiate(towerB, transform.position, transform.rotation, transform); 
-			towerBuiltHere = true; 
+			if (!towerBuiltHere)
+			{
+				Debug.Log($"Building a {towerB.name} here"); 
+				Instantiate(towerB, transform.position, transform.rotation, transform); 
+				towerBuiltHere = true; 
+			}
+			else
+			{
+				Debug.Log("<color=red>Cannot build a tower here because one already exists!</color>"); 
+			}
 		}
 		else
 		{
-			Debug.Log("<color=red>Cannot build a tower here because one already exists!</color>"); 
+			Debug.Log("<color=red>Cannot build a tower here because you don't have enough gold!</color>"); 
 		}
 	}
 
 	// Builds a ___ at this location 
-	public void BuildTowerC()
+	void BuildTowerC()
 	{
-		if (!towerBuiltHere)
+		if (GameObject.Find("Map").GetComponent<MapScript>().Gold > towerC.GetComponent<TowerBase>().towerCost)
 		{
-			Debug.Log($"Building a {towerC.name} here"); 
-			Instantiate(towerC, transform.position, transform.rotation, transform); 
-			towerBuiltHere = true; 
+			if (!towerBuiltHere)
+			{
+				Debug.Log($"Building a {towerC.name} here"); 
+				Instantiate(towerC, transform.position, transform.rotation, transform); 
+				towerBuiltHere = true; 
+			}
+			else
+			{
+				Debug.Log("<color=red>Cannot build a tower here because one already exists!</color>"); 
+			}
 		}
 		else
 		{
-			Debug.Log("<color=red>Cannot build a tower here because one already exists!</color>"); 
+			Debug.Log("<color=red>Cannot build a tower here because you don't have enough gold!</color>"); 
 		}
 	}
 
-	private void OnMouseDown()
+	void DisplayTowerOptions()
 	{
-		Debug.Log($"Tower {gameObject.name} has been clicked on."); 
-		//BuildTowerA(); 
-		BuildTowerB(); 
+		if (!towerBuiltHere && (hoveringOverBuildingSpot || hoveringOverButton)) 
+		{
+			buttonA.SetActive(true); 
+			buttonB.SetActive(true); 
+			buttonC.SetActive(true); 
+		}
+		else
+		{
+			buttonA.SetActive(false); 
+			buttonB.SetActive(false); 
+			buttonC.SetActive(false); 
+		}
+	}
+
+	private void OnMouseOver()
+	{
+		hoveringOverBuildingSpot = true; 
+		
+	}
+
+	private void OnMouseExit()
+	{
+		hoveringOverBuildingSpot = false; 
 	}
 }
