@@ -11,8 +11,10 @@ public class EnemyBase : MonoBehaviour
 	bool coroutineAllowed = false; 
 	bool traversedMap = false; 
 
-	[SerializeField] int health; 
-	public int Health => health; 
+	[SerializeField] float maxHealth; 
+	float curHealth;
+	public float Health => curHealth;
+	[SerializeField] private HealthBar healthBar;
 	[SerializeField] int damage; 
 	public int Damage => damage; 
 	[SerializeField] float curSpeed = 0.5f;  
@@ -33,10 +35,13 @@ public class EnemyBase : MonoBehaviour
 		routes = pRoutes; 
 		coroutineAllowed = true; 
 		level = pLevel; 
-		health += (Level * levelIncrement); 
+	    maxHealth += (float)(Level * levelIncrement); 
 		gold += (level * levelIncrement); 
-
-		setSpeed = curSpeed; 
+        curHealth = maxHealth;
+		setSpeed = curSpeed;
+		
+		//max health can't be zero
+		healthBar.UpdateHealthBar(maxHealth, curHealth);
 	}
 
 	void Update()
@@ -108,7 +113,8 @@ public class EnemyBase : MonoBehaviour
 
 	public void DamageEnemy(int hitAmount)
 	{
-		health -= hitAmount; 
+		curHealth -= hitAmount; 
+		healthBar.UpdateHealthBar(maxHealth, curHealth);
 	}
 
 	void HealthCheck()
