@@ -19,6 +19,7 @@ public class EnemyBase : MonoBehaviour
 	[SerializeField] int gold; 
 	int level = 0; 
 	public int Level => level; 
+	[SerializeField] int levelIncrement; 
 
 	float EnemyOffset = 1.0f; 
 
@@ -29,8 +30,8 @@ public class EnemyBase : MonoBehaviour
 		routes = pRoutes; 
 		coroutineAllowed = true; 
 		level = pLevel; 
-		health += Level; 
-		gold += level; 
+		health += (Level * levelIncrement); 
+		gold += (level * levelIncrement); 
 	}
 
 	void Update()
