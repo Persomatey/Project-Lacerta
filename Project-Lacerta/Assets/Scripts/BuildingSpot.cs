@@ -5,9 +5,9 @@ using UnityEngine;
 public class BuildingSpot : MonoBehaviour
 {
 	[Header("Tower Prefabs")]
-	[SerializeField] GameObject towerA; 
-	[SerializeField] GameObject towerB; 
-	[SerializeField] GameObject towerC; 
+	[SerializeField] public GameObject towerA; 
+	[SerializeField] public GameObject towerB; 
+	[SerializeField] public GameObject towerC; 
 
 	[Header("Button References")]
 	[SerializeField] GameObject buttonA; 

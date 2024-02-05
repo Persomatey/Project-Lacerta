@@ -2592,7 +2592,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Draconian Defense
+  m_text: Draconic Defense
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 41eb2672a5a684a4a8af3b341bd97414, type: 2}
   m_sharedMaterial: {fileID: 6753410054352983730, guid: 41eb2672a5a684a4a8af3b341bd97414,
@@ -3048,9 +3048,9 @@ MonoBehaviour:
   enemyDeathSFX: {fileID: 8300000, guid: 5b048c210e41a5e49b752301646dcfd3, type: 3}
   towerAAttackSFX: {fileID: 8300000, guid: 49d8920656e2fdf4387f7f7ecc37a34d, type: 3}
   towerAConnectSFX: {fileID: 8300000, guid: fe8662c225a96754ba1393dd83f00b94, type: 3}
-  towerBAttackSFX: {fileID: 8300000, guid: 25c8be41b5a06834b8bf25d0db85bbd2, type: 3}
+  towerBAttackSFX: {fileID: 8300000, guid: 49d8920656e2fdf4387f7f7ecc37a34d, type: 3}
   towerBExplosionSFX: {fileID: 8300000, guid: 009610474d60a724ca8fd8b8863f6307, type: 3}
-  towerCSpawnHelperSFX: {fileID: 8300000, guid: e8054164c2709bf4f9c4d0b8810cf402,
+  towerCSpawnHelperSFX: {fileID: 8300000, guid: e5276ce4542a33c43b8ed5846cf59a0b,
     type: 3}
   towerCHelperMoveSFX: {fileID: 8300000, guid: a107cd8a90188024abbd92519d4e674b, type: 3}
   towerCHelperAttackSFX: {fileID: 8300000, guid: c3b3adf2db2f2944b9f1e39b8ff8f634,
