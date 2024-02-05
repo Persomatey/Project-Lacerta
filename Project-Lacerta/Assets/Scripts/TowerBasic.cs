@@ -30,5 +30,6 @@ public class TowerBasic : TowerBase
 	{
 		GameObject proj = Instantiate(projectile, transform.position, transform.rotation); 
 		proj.GetComponent<ProjectileBasicTower>().SetupProjectile(enemyTarget.transform, damage + towerLevel); 
+		AudioSystem.instance.PlayTowerAAttackSFX();
 	}
 }

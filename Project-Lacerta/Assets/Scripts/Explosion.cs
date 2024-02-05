@@ -12,6 +12,7 @@ public class Explosion : MonoBehaviour
 		gameObject.transform.localScale = new Vector3(blastRadius, blastRadius, blastRadius);
 		StartCoroutine(SpriteFlip()); 
 		Destroy(gameObject, 0.5f); 
+		AudioSystem.instance.PlayTowerBExplosionSFX();
 	}
 
 	public void GiveBlastRadius(float pBlastRadius) 

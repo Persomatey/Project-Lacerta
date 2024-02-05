@@ -23,11 +23,19 @@ public class Pause : MonoBehaviour
 		gameCanvas.SetActive(true); 
 		pauseCanvas.SetActive(false); 
 		Time.timeScale = 1; 
+		AudioSystem.instance.PlayMenuSelectionSFX();
 	}
 
 	public void MainMenu() 
 	{
 		Time.timeScale = 1; 
+		AudioSystem.instance.PlayMenuSelectionSFX();
+		StartCoroutine( DelayMainMenu(0.5f) ); 
+	}
+
+	IEnumerator DelayMainMenu(float del)
+	{
+		yield return new WaitForSeconds(del); 
 		SceneManager.LoadScene("MainMenu"); 
 	}
 }

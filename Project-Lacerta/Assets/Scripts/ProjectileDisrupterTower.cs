@@ -19,6 +19,7 @@ public class ProjectileDisrupterTower : MonoBehaviour
 			//target.GetComponent<EnemyBase>().DamageEnemy(0); 
 			target.GetComponent<EnemyBase>().Stun(stunLength); 
 			Destroy(gameObject); 
+			AudioSystem.instance.PlayTowerCHelperAttackSFX();
 		}
 
 		if (activated && !target)
@@ -50,5 +51,6 @@ public class ProjectileDisrupterTower : MonoBehaviour
 		target = pTarget; 
 		activated = true; 
 		Debug.Log("ACTIVATED"); 
+		AudioSystem.instance.PlayTowerCHelperMoveSFX();
 	}
 }

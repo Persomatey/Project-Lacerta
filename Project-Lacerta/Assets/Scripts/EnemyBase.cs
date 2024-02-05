@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class EnemyBase : MonoBehaviour
 {
+	public enum EnemyType 
+	{ 
+		fast, 
+		med, 
+		slow
+	}
+
 	MapScript mapScript; 
 	Transform[] routes; 
 	int routeToGo = 0; 
@@ -134,6 +141,7 @@ public class EnemyBase : MonoBehaviour
 	{
 		yield return new WaitForEndOfFrame(); 
 		mapScript.IncreaseGold(gold); 
+		AudioSystem.instance.PlayEnemyDeathSFX(); 
 		Destroy(gameObject); 
 	}
 
@@ -142,6 +150,7 @@ public class EnemyBase : MonoBehaviour
 	{
 		Debug.Log("<color=red>Enemy made it all the way (oh no!)</color>"); 
 		mapScript.DecreaseGold(gold); 
+		AudioSystem.instance.PlayEnemyAttackSFX();
 		Destroy(gameObject); 
 	}
 

@@ -5,6 +5,14 @@ using UnityEngine;
 
 public class TowerBase : MonoBehaviour
 {
+	public enum TowerType 
+	{ 
+		a, 
+		b, 
+		c
+	}
+
+	[SerializeField] TowerType towerType; 
 	[SerializeField] float cooldown; 
 	[SerializeField] float towerRange; 
 	EnemyBase[] enemies; 
@@ -22,6 +30,7 @@ public class TowerBase : MonoBehaviour
 		enemiesWithinRange = new List<EnemyBase>(); 
 		tempRandFloat = Random.Range(0f, 1f); 
 		towerLevel = 0; 
+		AudioSystem.instance.PlayTowerBuildSFX(towerType); 
 	}
 
 	protected virtual void Update()
@@ -107,6 +116,7 @@ public class TowerBase : MonoBehaviour
 			GameObject.Find("Map").GetComponent<MapScript>().DecreaseGold( upgradeCost ); 
 			towerLevel++; 
 			Debug.Log($"Tower upgraded to {towerLevel}"); 
+			AudioSystem.instance.PlayTowerUpgradeSFX(); 
 		}
 	}
 }

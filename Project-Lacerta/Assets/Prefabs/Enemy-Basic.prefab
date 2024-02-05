@@ -321,6 +321,7 @@ MonoBehaviour:
   gold: 5
   levelIncrement: 2
   stunned: 0
+  enemyType: 1
 --- !u!1 &6796219794211306024
 GameObject:
   m_ObjectHideFlags: 0

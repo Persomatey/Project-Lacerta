@@ -242,6 +242,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ac4ec3937ca04b449994acac392f6c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  towerType: 1
   cooldown: 2
   towerRange: 3
   enemiesWithinRange: []

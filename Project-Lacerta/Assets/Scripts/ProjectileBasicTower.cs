@@ -34,6 +34,7 @@ public class ProjectileBasicTower : MonoBehaviour
 		if (target != null && Vector3.Distance(transform.position, target.position) < 0.1f)
 		{
 			target.GetComponent<EnemyBase>().DamageEnemy(damage); 
+			AudioSystem.instance.PlayTowerAConnectSFX(); 
 			Destroy(gameObject); 
 		}
 	}

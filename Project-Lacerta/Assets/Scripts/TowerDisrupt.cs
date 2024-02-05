@@ -53,6 +53,7 @@ public class TowerDisrupt : TowerBase
 
 			GameObject newProj = Instantiate(projectile, loc.position, transform.rotation, loc); 
 			projectiles.Add(newProj.GetComponent<ProjectileDisrupterTower>()); 
+			AudioSystem.instance.PlayTowerCSpawnHelperSFX();
 		}
 	}
 

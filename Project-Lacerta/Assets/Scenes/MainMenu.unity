@@ -3010,6 +3010,72 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1718062915}
   m_CullTransparentMesh: 1
+--- !u!1 &1811832734
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1811832736}
+  - component: {fileID: 1811832735}
+  m_Layer: 0
+  m_Name: AudioSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1811832735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1811832734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6a88138326b4b848aaba59cdc0d9eca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menuMusic: {fileID: 0}
+  gameplayMusic: {fileID: 0}
+  EnemySpawnedFastSFX: {fileID: 8300000, guid: f1dcca8995488d54395c16462592e612, type: 3}
+  EnemySpawnedMedSFX: {fileID: 8300000, guid: 2753bccbbf5fa1d4b8d57d5bdef54302, type: 3}
+  EnemySpawnedSlowSFX: {fileID: 8300000, guid: 823fc3ac7463b9143b9f9efbfe69fd78, type: 3}
+  enemyAttackSFX: {fileID: 8300000, guid: 0e0df713a4951cf4c9be41c1ff5b1a94, type: 3}
+  enemyDeathSFX: {fileID: 8300000, guid: 5b048c210e41a5e49b752301646dcfd3, type: 3}
+  towerAAttackSFX: {fileID: 8300000, guid: 49d8920656e2fdf4387f7f7ecc37a34d, type: 3}
+  towerAConnectSFX: {fileID: 8300000, guid: fe8662c225a96754ba1393dd83f00b94, type: 3}
+  towerBAttackSFX: {fileID: 8300000, guid: 25c8be41b5a06834b8bf25d0db85bbd2, type: 3}
+  towerBExplosionSFX: {fileID: 8300000, guid: 009610474d60a724ca8fd8b8863f6307, type: 3}
+  towerCSpawnHelperSFX: {fileID: 8300000, guid: e8054164c2709bf4f9c4d0b8810cf402,
+    type: 3}
+  towerCHelperMoveSFX: {fileID: 8300000, guid: a107cd8a90188024abbd92519d4e674b, type: 3}
+  towerCHelperAttackSFX: {fileID: 8300000, guid: c3b3adf2db2f2944b9f1e39b8ff8f634,
+    type: 3}
+  towerABuiltSFX: {fileID: 8300000, guid: 4ad572cf8b7396d4ba14b32e7f6565f1, type: 3}
+  towerBBuiltSFX: {fileID: 8300000, guid: da4e243536dcf0d46829ee12a8727075, type: 3}
+  towerCBuiltSFX: {fileID: 8300000, guid: 20523bd01d6475546b0d59d73c82d99f, type: 3}
+  towerUpgradeSFX: {fileID: 8300000, guid: dc903bcf77cf96948bde18df68dc6ac6, type: 3}
+  menuSelectionSFX: {fileID: 8300000, guid: bd6e6c84f399dd047bf7e2098fe8d539, type: 3}
+  menuBackSFX: {fileID: 8300000, guid: b71f568d7566dc94aa7d18a615de25de, type: 3}
+--- !u!4 &1811832736
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1811832734}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 960, y: 622.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1978086932
 GameObject:
   m_ObjectHideFlags: 0
@@ -3357,3 +3423,4 @@ SceneRoots:
   - {fileID: 759699437}
   - {fileID: 2007279639}
   - {fileID: 1489933395}
+  - {fileID: 1811832736}

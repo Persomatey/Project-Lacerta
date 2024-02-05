@@ -31,5 +31,6 @@ public class TowerAOE : TowerBase
 	{
 		GameObject proj = Instantiate(projectile, transform.position, transform.rotation); 
 		proj.GetComponent<ProjectileAOETower>().SetupProjectile(enemyTarget.transform, damage + towerLevel, blastRadius + towerLevel); 
+		AudioSystem.instance.PlayTowerBAttackSFX();
 	}
 }

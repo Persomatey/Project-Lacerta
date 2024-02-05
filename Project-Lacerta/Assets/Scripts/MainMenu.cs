@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement; 
 
@@ -9,25 +10,39 @@ public class MainMenu : MonoBehaviour
 
 	public void StartGame()
 	{ 
-		// Load scene 
-		SceneManager.LoadScene("SampleScene"); 
+		AudioSystem.instance.PlayMenuSelectionSFX();
+		StartCoroutine(DelayPlayGame(0.5f)); 
 	}
 
 	public void HowToPlay()
 	{
-		// show controls 
 		mainMenuPanel.SetActive(false); 
 		howToPlayPanel.SetActive(true); 
+		AudioSystem.instance.PlayMenuSelectionSFX();
 	}
 
 	public void ExitGame()
 	{
-		Application.Quit(); 
+		AudioSystem.instance.PlayMenuSelectionBackSFX();
+		StartCoroutine(DelayQuitGame(0.5f)); 
 	}
 
 	public void DismissHowToPlayPanel()
 	{
 		mainMenuPanel.SetActive(true); 
 		howToPlayPanel.SetActive(false); 
+		AudioSystem.instance.PlayMenuSelectionBackSFX();
+	}
+
+	IEnumerator DelayPlayGame(float del)
+	{
+		yield return new WaitForSeconds(del); 
+		SceneManager.LoadScene("SampleScene"); 
+	}
+
+	IEnumerator DelayQuitGame(float del)
+	{
+		yield return new WaitForSeconds(del); 
+		Application.Quit(); 
 	}
 }
