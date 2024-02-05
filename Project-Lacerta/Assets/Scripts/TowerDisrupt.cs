@@ -35,6 +35,8 @@ public class TowerDisrupt : TowerBase
 			projectileSpawnCheckDone = true; 
 			StartCoroutine(ResetProjectileSpawnCooldown()); 
 
+			// check if there's an available spot 
+
 			Transform loc = null; 
 
 			for(int i = 0; i < projectileLocs.Length; i++)
@@ -45,6 +47,8 @@ public class TowerDisrupt : TowerBase
 					break; 
 				}
 			}
+
+			// spawn a projectile 
 
 			if (loc == null)
 			{

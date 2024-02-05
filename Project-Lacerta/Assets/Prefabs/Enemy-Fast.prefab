@@ -425,9 +425,10 @@ MonoBehaviour:
   healthBar: {fileID: 6403332291073552500}
   damage: 1
   curSpeed: 0.3
-  gold: 5
+  gold: 3
   levelIncrement: 2
   stunned: 0
+  enemyType: 0
 --- !u!1 &7237907329611169579
 GameObject:
   m_ObjectHideFlags: 0

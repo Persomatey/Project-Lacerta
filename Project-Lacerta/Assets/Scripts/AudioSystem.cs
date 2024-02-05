@@ -5,7 +5,9 @@ using UnityEngine;
 public class AudioSystem : MonoBehaviour
 {
     public static AudioSystem instance; 
-    private AudioSource source; 
+    private AudioSource sourceSFX; 
+    private AudioSource sourceMusic; 
+	[SerializeField] float musicVolume; 
 
     [Header("Music")]
     [SerializeField] private AudioClip menuMusic; 
@@ -38,7 +40,8 @@ public class AudioSystem : MonoBehaviour
 
 	private void Awake()
 	{
-		source = (GetComponent<AudioSource>()) ? GetComponent<AudioSource>() : gameObject.AddComponent<AudioSource>(); 
+		sourceSFX = gameObject.AddComponent<AudioSource>(); 
+		sourceMusic = gameObject.AddComponent<AudioSource>(); 
 
         if (instance != null)
 		{
@@ -57,18 +60,19 @@ public class AudioSystem : MonoBehaviour
 	{
 		if(!menuMusic) { return; }
 
-		source.clip = menuMusic; 
-		source.loop = true; 
-		source.Play(); 
+		sourceMusic.clip = menuMusic; 
+		sourceMusic.loop = true; 
+		sourceMusic.Play(); 
 	}
 
 	public void PlayGameplayMusic()
 	{
 		if(!gameplayMusic) { return; }
 
-		source.clip = gameplayMusic; 
-		source.loop = true; 
-		source.Play(); 
+		sourceMusic.clip = gameplayMusic; 
+		sourceMusic.loop = true; 
+		sourceMusic.volume = musicVolume; 
+		sourceMusic.Play(); 
 	}
 
 	#endregion Music
@@ -81,15 +85,15 @@ public class AudioSystem : MonoBehaviour
 		{
 			case EnemyBase.EnemyType.fast: // fast enemy 
 				if(!EnemySpawnedFastSFX) { return; }
-				source.PlayOneShot(EnemySpawnedFastSFX); 
+				sourceSFX.PlayOneShot(EnemySpawnedFastSFX); 
 				break; 
 			case EnemyBase.EnemyType.med: // med enemy 
 				if(!EnemySpawnedMedSFX) { return; }
-				source.PlayOneShot(EnemySpawnedMedSFX); 
+				sourceSFX.PlayOneShot(EnemySpawnedMedSFX); 
 				break; 
 			case EnemyBase.EnemyType.slow: // slow enemy 
 				if(!EnemySpawnedSlowSFX) { return; }
-				source.PlayOneShot(EnemySpawnedSlowSFX); 
+				sourceSFX.PlayOneShot(EnemySpawnedSlowSFX); 
 				break;
 		}
 	}
@@ -98,63 +102,63 @@ public class AudioSystem : MonoBehaviour
 	{
 		if(!enemyDeathSFX) { return; }
 
-		source.PlayOneShot(enemyDeathSFX); 
+		sourceSFX.PlayOneShot(enemyDeathSFX); 
 	}
 
 	public void PlayEnemyAttackSFX()
 	{
 		if(!enemyAttackSFX) { return; }
 
-		source.PlayOneShot(enemyAttackSFX, 0.33f); 
+		sourceSFX.PlayOneShot(enemyAttackSFX, 0.33f); 
 	}
 
 	public void PlayTowerAAttackSFX()
 	{
 		if(!towerAAttackSFX) { return; }
 
-		source.PlayOneShot(towerAAttackSFX, 1f); 
+		sourceSFX.PlayOneShot(towerAAttackSFX, 1f); 
 	}
 
 	public void PlayTowerAConnectSFX()
 	{
 		if(!towerAConnectSFX) { return; }
 
-		source.PlayOneShot(towerAConnectSFX, 0.15f); 
+		sourceSFX.PlayOneShot(towerAConnectSFX, 0.15f); 
 	}
 
 	public void PlayTowerBAttackSFX()
 	{
 		if(!towerBAttackSFX) { return; }
 
-		source.PlayOneShot(towerBAttackSFX); 
+		sourceSFX.PlayOneShot(towerBAttackSFX); 
 	}
 
 	public void PlayTowerBExplosionSFX()
 	{
 		if(!towerBExplosionSFX) { return; }
 
-		source.PlayOneShot(towerBExplosionSFX, 0.15f); 
+		sourceSFX.PlayOneShot(towerBExplosionSFX, 0.15f); 
 	}
 
 	public void PlayTowerCSpawnHelperSFX()
 	{
 		if(!towerCSpawnHelperSFX) { return; }
 
-		source.PlayOneShot(towerCSpawnHelperSFX, 0.25f); 
+		sourceSFX.PlayOneShot(towerCSpawnHelperSFX, 0.25f); 
 	}
 
 	public void PlayTowerCHelperMoveSFX()
 	{
 		if(!towerCHelperMoveSFX) { return; }
 
-		source.PlayOneShot(towerCHelperMoveSFX, 0.10f); 
+		sourceSFX.PlayOneShot(towerCHelperMoveSFX, 0.10f); 
 	}
 
 	public void PlayTowerCHelperAttackSFX()
 	{
 		if(!towerCHelperAttackSFX) { return; }
 
-		source.PlayOneShot(towerCHelperAttackSFX, 0.15f); 
+		sourceSFX.PlayOneShot(towerCHelperAttackSFX, 0.15f); 
 	}
 
 	public void PlayTowerBuildSFX(TowerBase.TowerType type)
@@ -163,15 +167,15 @@ public class AudioSystem : MonoBehaviour
 		{
 			case TowerBase.TowerType.a: 
 				if(!towerABuiltSFX) { return; }
-				source.PlayOneShot(towerABuiltSFX); 
+				sourceSFX.PlayOneShot(towerABuiltSFX); 
 				break; 
 			case TowerBase.TowerType.b: 
 				if(!towerBBuiltSFX) { return; }
-				source.PlayOneShot(towerBBuiltSFX); 
+				sourceSFX.PlayOneShot(towerBBuiltSFX); 
 				break; 
 			case TowerBase.TowerType.c: 
 				if(!towerCBuiltSFX) { return; }
-				source.PlayOneShot(towerCBuiltSFX); 
+				sourceSFX.PlayOneShot(towerCBuiltSFX); 
 				break; 
 		}
 	}
@@ -180,21 +184,21 @@ public class AudioSystem : MonoBehaviour
 	{
 		if(!towerUpgradeSFX) { return; }
 
-		source.PlayOneShot(towerUpgradeSFX, 0.5f); 
+		sourceSFX.PlayOneShot(towerUpgradeSFX, 0.5f); 
 	}
 
 	public void PlayMenuSelectionSFX()
 	{
 		if(!menuSelectionSFX) { return; }
 
-		source.PlayOneShot(menuSelectionSFX, 0.4f); 
+		sourceSFX.PlayOneShot(menuSelectionSFX, 0.4f); 
 	}
 
 	public void PlayMenuSelectionBackSFX()
 	{
 		if(!menuBackSFX) { return; }
 
-		source.PlayOneShot(menuBackSFX, 0.5f); 
+		sourceSFX.PlayOneShot(menuBackSFX, 0.5f); 
 	}
 
 	#endregion SFX

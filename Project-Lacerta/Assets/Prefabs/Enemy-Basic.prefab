@@ -318,7 +318,7 @@ MonoBehaviour:
   healthBar: {fileID: 7143491184190351741}
   damage: 1
   curSpeed: 0.2
-  gold: 5
+  gold: 10
   levelIncrement: 2
   stunned: 0
   enemyType: 1

@@ -6,7 +6,20 @@ public class MainMenu : MonoBehaviour
 {
 
 	[SerializeField] GameObject mainMenuPanel; 
-	[SerializeField] GameObject howToPlayPanel; 
+	[SerializeField] GameObject howToPlayPanel;
+
+	private void Awake()
+	{
+		StartCoroutine(DelayStartMusic()); 
+	}
+
+	IEnumerator DelayStartMusic()
+	{
+		yield return new WaitForEndOfFrame(); 
+		yield return new WaitForEndOfFrame(); 
+		yield return new WaitForEndOfFrame(); 
+		AudioSystem.instance.PlayGameplayMusic(); 
+	}
 
 	public void StartGame()
 	{ 
