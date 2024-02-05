@@ -16,6 +16,7 @@ public class MapScript : MonoBehaviour
 	public int Gold => gold; 
 	int waveCount = 0; 
 	public int WaveCount => waveCount;
+	bool loseOnce = false; 
 
 	private void Start()
 	{
@@ -33,10 +34,16 @@ public class MapScript : MonoBehaviour
 	{
 		if (Gold <= 0)
 		{
-			gold = 0; 
-			Debug.Log("<color=red>You've lost!</color>"); 
-			Time.timeScale = 0; 
-			gameOverMenu.SetActive(true); 
+			if (!loseOnce)
+			{
+				loseOnce = true; 
+				Debug.Log("<color=red>Lose Once</color>"); 
+
+				gold = 0; 
+				//Debug.Log("<color=red>You've lost!</color>"); 
+				Time.timeScale = 0; 
+				gameOverMenu.SetActive(true); 
+			}
 		}
 	}
 
@@ -67,6 +74,11 @@ public class MapScript : MonoBehaviour
 			Debug.Log($"Cannot decrease gold by {pGoldDec} because current gold {Gold} is less than that."); 
 			// Start lose sequence
 		}
+	}
+
+	public void DamagePlayerGold(int pGoldDec)
+	{
+		gold -= pGoldDec; 
 	}
 
 	IEnumerator StartWave()

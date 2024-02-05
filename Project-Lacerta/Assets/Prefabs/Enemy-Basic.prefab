@@ -314,12 +314,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff2d32020c8377d4588eb9e3842a7cd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 3
+  maxHealth: 5
   healthBar: {fileID: 7143491184190351741}
-  damage: 1
+  damage: 10
   curSpeed: 0.2
-  gold: 10
-  levelIncrement: 2
+  gold: 5
+  levelIncrement: 3
   stunned: 0
   enemyType: 1
 --- !u!1 &6796219794211306024

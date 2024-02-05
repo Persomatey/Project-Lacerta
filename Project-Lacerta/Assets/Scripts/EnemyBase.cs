@@ -166,8 +166,8 @@ public class EnemyBase : MonoBehaviour
 	// Enemy made it all the way across
 	void EnemyAttack()
 	{
-		Debug.Log("<color=red>Enemy made it all the way (oh no!)</color>"); 
-		mapScript.DecreaseGold(gold); 
+		Debug.Log($"<color=red>Enemy made it all the way (oh no!)</color> Dealing {Damage * levelIncrement} damage"); 
+		mapScript.DamagePlayerGold(Damage * levelIncrement); 
 		AudioSystem.instance.PlayEnemyAttackSFX();
 		Destroy(gameObject); 
 	}

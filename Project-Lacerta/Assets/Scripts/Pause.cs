@@ -28,6 +28,7 @@ public class Pause : MonoBehaviour
 
 	public void MainMenu() 
 	{
+		Debug.Log("Going back to main menu"); 
 		Time.timeScale = 1; 
 		AudioSystem.instance.PlayMenuSelectionSFX();
 		StartCoroutine( DelayMainMenu(0.5f) ); 
@@ -36,6 +37,7 @@ public class Pause : MonoBehaviour
 	IEnumerator DelayMainMenu(float del)
 	{
 		yield return new WaitForSeconds(del); 
+		Debug.Log("main menu now"); 
 		SceneManager.LoadScene("MainMenu"); 
 	}
 }

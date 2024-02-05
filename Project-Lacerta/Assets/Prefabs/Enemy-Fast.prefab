@@ -423,7 +423,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 2
   healthBar: {fileID: 6403332291073552500}
-  damage: 1
+  damage: 5
   curSpeed: 0.3
   gold: 3
   levelIncrement: 2
