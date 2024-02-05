@@ -5,6 +5,8 @@ public class ProjectileDisrupterTower : MonoBehaviour
 	[SerializeField] Transform sprite; 
 	[SerializeField] float speed = 1; 
 	[SerializeField] float stunLength = 2f; 
+	[SerializeField] float stunIncreaseIncrement = 0.25f; 
+	int level; 
 	public Transform target; 
 	public bool activated = false;
 	public int position; 
@@ -17,7 +19,7 @@ public class ProjectileDisrupterTower : MonoBehaviour
 		if (target != null && Vector3.Distance(transform.position, target.position) < 0.1f)
 		{
 			//target.GetComponent<EnemyBase>().DamageEnemy(0); 
-			target.GetComponent<EnemyBase>().Stun(stunLength); 
+			target.GetComponent<EnemyBase>().Stun(stunLength + (level * stunIncreaseIncrement)); 
 			Destroy(gameObject); 
 			AudioSystem.instance.PlayTowerCHelperAttackSFX();
 		}
@@ -52,5 +54,10 @@ public class ProjectileDisrupterTower : MonoBehaviour
 		activated = true; 
 		Debug.Log("ACTIVATED"); 
 		AudioSystem.instance.PlayTowerCHelperMoveSFX();
+	}
+
+	public void SetupProjectile(int pLevel)
+	{
+		level = pLevel; 
 	}
 }

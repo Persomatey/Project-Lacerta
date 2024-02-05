@@ -253,7 +253,7 @@ MonoBehaviour:
   damageStepPerLevel: 1
   projectile: {fileID: 1796876321083722405, guid: 5dbf73b984e0a5049837d3d0cf03b364,
     type: 3}
-  damage: 1
+  damage: 2
   blastRadius: 2
 --- !u!1 &6098709626727921020
 GameObject:

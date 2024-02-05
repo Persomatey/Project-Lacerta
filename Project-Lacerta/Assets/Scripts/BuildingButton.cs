@@ -34,4 +34,10 @@ public class BuildingButton : MonoBehaviour
 		buildingSpot.hoveringOverButton = false; 
 		towerCostTMP.SetActive(false); 
 	}
+
+	public void DisableCostTMP()
+	{
+		buildingSpot.hoveringOverButton = false; 
+		towerCostTMP.SetActive(false); 
+	}
 }

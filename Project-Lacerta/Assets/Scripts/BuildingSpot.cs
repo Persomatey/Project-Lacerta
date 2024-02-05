@@ -14,6 +14,8 @@ public class BuildingSpot : MonoBehaviour
 	[SerializeField] GameObject buttonB; 
 	[SerializeField] GameObject buttonC; 
 
+	[Header("Other")] 
+	[SerializeField] GameObject costTMP; 
 	bool towerBuiltHere = false; 
 	public bool hoveringOverBuildingSpot = false; 
 	public bool hoveringOverButton = false; 
@@ -54,6 +56,12 @@ public class BuildingSpot : MonoBehaviour
 		}
 	}
 
+	IEnumerator DisableCostTMP()
+	{
+		yield return new WaitForEndOfFrame(); 
+		costTMP.SetActive(false); 
+	}
+
 	// Builds a TowerBasic at this location 
 	void BuildTowerA()
 	{
@@ -65,15 +73,18 @@ public class BuildingSpot : MonoBehaviour
 				Instantiate(towerA, transform.position, transform.rotation, transform); 
 				GameObject.Find("Map").GetComponent<MapScript>().DecreaseGold(towerA.GetComponent<TowerBase>().towerCost); 
 				towerBuiltHere = true; 
+				StartCoroutine(DisableCostTMP()); 
 			}
 			else
 			{
 				Debug.Log("<color=red>Cannot build a tower here because one already exists!</color>"); 
+				AudioSystem.instance.PlayMenuSelectionBackSFX(); 
 			}
 		}
 		else
 		{
 			Debug.Log("<color=red>Cannot build a tower here because you don't have enough gold!</color>"); 
+			AudioSystem.instance.PlayMenuSelectionBackSFX(); 
 		}
 		
 	}
@@ -87,16 +98,20 @@ public class BuildingSpot : MonoBehaviour
 			{
 				Debug.Log($"Building a {towerB.name} here"); 
 				Instantiate(towerB, transform.position, transform.rotation, transform); 
+				GameObject.Find("Map").GetComponent<MapScript>().DecreaseGold(towerB.GetComponent<TowerBase>().towerCost); 
 				towerBuiltHere = true; 
+				StartCoroutine(DisableCostTMP()); 
 			}
 			else
 			{
 				Debug.Log("<color=red>Cannot build a tower here because one already exists!</color>"); 
+				AudioSystem.instance.PlayMenuSelectionBackSFX(); 
 			}
 		}
 		else
 		{
 			Debug.Log("<color=red>Cannot build a tower here because you don't have enough gold!</color>"); 
+			AudioSystem.instance.PlayMenuSelectionBackSFX(); 
 		}
 	}
 
@@ -109,16 +124,20 @@ public class BuildingSpot : MonoBehaviour
 			{
 				Debug.Log($"Building a {towerC.name} here"); 
 				Instantiate(towerC, transform.position, transform.rotation, transform); 
+				GameObject.Find("Map").GetComponent<MapScript>().DecreaseGold(towerC.GetComponent<TowerBase>().towerCost); 
 				towerBuiltHere = true; 
+				StartCoroutine(DisableCostTMP()); 
 			}
 			else
 			{
 				Debug.Log("<color=red>Cannot build a tower here because one already exists!</color>"); 
+				AudioSystem.instance.PlayMenuSelectionBackSFX(); 
 			}
 		}
 		else
 		{
 			Debug.Log("<color=red>Cannot build a tower here because you don't have enough gold!</color>"); 
+			AudioSystem.instance.PlayMenuSelectionBackSFX(); 
 		}
 	}
 

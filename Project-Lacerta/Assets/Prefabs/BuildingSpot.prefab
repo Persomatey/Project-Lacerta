@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5154874577968145279}
   - component: {fileID: 7880688595941982923}
   m_Layer: 0
-  m_Name: 'Cost TMP '
+  m_Name: CostTMP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -435,6 +435,7 @@ MonoBehaviour:
   buttonA: {fileID: 6113746507592009070}
   buttonB: {fileID: 6227056649899064192}
   buttonC: {fileID: 9113927987195563284}
+  costTMP: {fileID: 43127592427293735}
   hoveringOverBuildingSpot: 0
   hoveringOverButton: 0
 --- !u!65 &6861888955590881202
