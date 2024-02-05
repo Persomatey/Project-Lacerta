@@ -343,7 +343,7 @@ MonoBehaviour:
   towerRange: 3
   enemiesWithinRange: []
   checkDone: 0
-  towerCost: 35
+  towerCost: 50
   lvlText: {fileID: 6724028111022967207}
   upgradeTipText: {fileID: 1018228594644910534}
   damageStepPerLevel: 0

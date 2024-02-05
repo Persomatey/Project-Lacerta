@@ -47,11 +47,11 @@ public class ProjectileBasicTower : MonoBehaviour
 		}
 		
 		timePassed += Time.deltaTime; 
-		if (timePassed > rotInterval)
-		{
-			timePassed = 0; 
-			sprite.transform.rotation = Quaternion.Euler( new Vector3(90, sprite.transform.rotation.eulerAngles.y + rotAmount, 0) );  
-		}
+		//if (timePassed > rotInterval)
+		//{
+		//	timePassed = 0; 
+		//	sprite.transform.rotation = Quaternion.Euler( new Vector3(90, sprite.transform.rotation.eulerAngles.y + rotAmount, 0) );  
+		//}
 	}
 
 	// This gets called by the tower that spawns it to set the damage and target and stuff. 

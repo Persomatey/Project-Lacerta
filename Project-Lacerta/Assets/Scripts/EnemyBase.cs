@@ -42,7 +42,7 @@ public class EnemyBase : MonoBehaviour
 		routes = pRoutes; 
 		coroutineAllowed = true; 
 		level = pLevel; 
-	    maxHealth += (float)(Level * levelIncrement); 
+	    maxHealth += (float)(Level * (levelIncrement * 2)); 
 		gold += (level * levelIncrement); 
         curHealth = maxHealth;
 		setSpeed = curSpeed;
@@ -167,7 +167,7 @@ public class EnemyBase : MonoBehaviour
 	void EnemyAttack()
 	{
 		Debug.Log($"<color=red>Enemy made it all the way (oh no!)</color> Dealing {Damage * levelIncrement} damage"); 
-		mapScript.DamagePlayerGold(Damage * levelIncrement); 
+		mapScript.DamagePlayerGold(Damage + (level * levelIncrement)); 
 		AudioSystem.instance.PlayEnemyAttackSFX();
 		Destroy(gameObject); 
 	}

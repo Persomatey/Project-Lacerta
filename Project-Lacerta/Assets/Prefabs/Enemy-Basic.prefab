@@ -319,7 +319,7 @@ MonoBehaviour:
   damage: 10
   curSpeed: 0.2
   gold: 5
-  levelIncrement: 3
+  levelIncrement: 1
   stunned: 0
   enemyType: 1
 --- !u!1 &6796219794211306024
