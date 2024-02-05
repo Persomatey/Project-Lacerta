@@ -395,11 +395,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77c3cdc1f5408aa409e371691d0f89d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  towerType: 0
   cooldown: 1
   towerRange: 3
   enemiesWithinRange: []
   checkDone: 0
-  towerCost: 15
+  towerCost: 20
   lvlText: {fileID: 6724028111022967207}
   upgradeTipText: {fileID: 1817203374893329339}
   damageStepPerLevel: 1
@@ -606,7 +607,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1790213901, guid: 695af0a40de496e46a4e8b6633dcaf38, type: 3}
+  m_Sprite: {fileID: 904784396, guid: 695af0a40de496e46a4e8b6633dcaf38, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0

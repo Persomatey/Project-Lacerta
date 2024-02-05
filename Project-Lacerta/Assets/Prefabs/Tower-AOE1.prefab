@@ -247,7 +247,7 @@ MonoBehaviour:
   towerRange: 3
   enemiesWithinRange: []
   checkDone: 0
-  towerCost: 20
+  towerCost: 30
   lvlText: {fileID: 6724028111022967207}
   upgradeTipText: {fileID: 8682504058762462924}
   damageStepPerLevel: 1
@@ -608,9 +608,9 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 904784396, guid: 695af0a40de496e46a4e8b6633dcaf38, type: 3}
+  m_Sprite: {fileID: 1790213901, guid: 695af0a40de496e46a4e8b6633dcaf38, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}

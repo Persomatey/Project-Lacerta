@@ -204,7 +204,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 7851046811690341886}
   speed: 0.1
-  stunLength: 5
+  stunLength: 2
   target: {fileID: 0}
   activated: 0
   position: 0

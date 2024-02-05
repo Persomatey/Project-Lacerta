@@ -54,6 +54,24 @@ public class EnemyBase : MonoBehaviour
 	void Update()
 	{
 		HealthCheck(); 
+		StartCoroutine( DirectionChecker() ); 
+	}
+
+	IEnumerator DirectionChecker()
+	{
+		float lastPos = transform.position.x;
+		yield return new WaitForEndOfFrame(); 
+		float curPos = transform.position.x;
+		float move = curPos - lastPos;
+		
+		if (move < 0)
+		{
+			transform.Find("Sprite").GetComponent<SpriteRenderer>().flipX = false; 
+		}
+		else
+		{
+			transform.Find("Sprite").GetComponent<SpriteRenderer>().flipX = true; 
+		}
 	}
 
 	private void FixedUpdate()
