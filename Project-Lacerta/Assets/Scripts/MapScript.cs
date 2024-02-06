@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class MapScript : MonoBehaviour
 {
+	[SerializeField] TMP_FontAsset fontAsset; 
 	[SerializeField] GameObject gameOverMenu; 
 	[SerializeField] int maxAllowedEnemies; 
 	[SerializeField] bool loopingWaves; 
@@ -28,6 +29,14 @@ public class MapScript : MonoBehaviour
 	{
 		UpdateGoldAndTimeText(); 
 		LoseChecker(); 
+
+		if (Application.isEditor)
+		{
+			if (Input.GetKeyDown(KeyCode.Alpha4))
+			{
+				IncreaseGold(100); 
+			}
+		}
 	}
 
 	void LoseChecker()
@@ -50,12 +59,14 @@ public class MapScript : MonoBehaviour
 	private void UpdateGoldAndTimeText()
 	{
 		// Update Gold Text 
-		goldText.text = $"{Gold}"; 
+		goldText.SetText($"{Gold}"); 
+		goldText.UpdateFontAsset(); 
 
 		// Update Time Text 
 		string mins = $"{TimeSpan.FromSeconds(Time.time).Minutes}"; 
 		string secs = (TimeSpan.FromSeconds(Time.time).Seconds < 10) ? $"0{TimeSpan.FromSeconds(Time.time).Seconds}" : $"{TimeSpan.FromSeconds(Time.time).Seconds}"; 
-		timeText.text = $"{mins}:{secs}"; 
+		timeText.SetText($"{mins}:{secs}"); 
+		timeText.UpdateFontAsset(); 
 	}
 
 	public void IncreaseGold(int pGoldInc)
@@ -88,7 +99,12 @@ public class MapScript : MonoBehaviour
 
 		for(int i = 0; i < wave.enemyPrefabsInOrder.Length; i++)
 		{
-			yield return new WaitForSeconds(wave.enemyPrefabTimes[i]); 
+			float time = wave.enemyPrefabTimes[i]; 
+			float diff = 0.2f; 
+			float modified = time - (waveCount * diff); 
+			modified = ( modified < 0.25f ) ? 0.25f : modified; 
+			Debug.Log($"Delaying for {modified}"); 
+			yield return new WaitForSeconds(modified); 
 
 			while (EnemyCount() >= maxAllowedEnemies) // if there are too many enemies on screen, then wait a second... 
 			{

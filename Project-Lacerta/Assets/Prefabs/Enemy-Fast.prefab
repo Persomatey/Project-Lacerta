@@ -424,7 +424,7 @@ MonoBehaviour:
   maxHealth: 2
   healthBar: {fileID: 6403332291073552500}
   damage: 5
-  curSpeed: 0.3
+  curSpeed: 0.25
   gold: 3
   levelIncrement: 1
   stunned: 0

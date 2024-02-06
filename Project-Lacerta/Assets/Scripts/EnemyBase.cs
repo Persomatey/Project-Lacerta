@@ -23,7 +23,7 @@ public class EnemyBase : MonoBehaviour
 	public float Health => curHealth;
 	[SerializeField] private HealthBar healthBar;
 	[SerializeField] int damage; 
-	public int Damage => damage; 
+	public int Damage => damage + (level + (levelIncrement * 2)); 
 	[SerializeField] float curSpeed = 0.5f;  
 	float setSpeed; 
 	[SerializeField] int gold; 
@@ -42,8 +42,10 @@ public class EnemyBase : MonoBehaviour
 		routes = pRoutes; 
 		coroutineAllowed = true; 
 		level = pLevel; 
-	    maxHealth += (float)(Level * (levelIncrement * 2)); 
-		gold += (level * levelIncrement); 
+	    maxHealth = (level < 20) ? maxHealth + (float)(Level * levelIncrement) :  maxHealth + (float)(Level * levelIncrement * 2); 
+		//gold += (level * levelIncrement); 
+		gold = (level < 10) ? gold + level : gold + (level/2); 
+		gold = (gold == 25) ? 25 : gold; 
         curHealth = maxHealth;
 		setSpeed = curSpeed;
 		

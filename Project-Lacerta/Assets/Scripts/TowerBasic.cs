@@ -10,7 +10,11 @@ public class TowerBasic : TowerBase
 	{
 		if (enemiesWithinRange.Count > 0)
 		{
-			enemyTarget = enemiesWithinRange[0]; 
+			enemyTarget = enemiesWithinRange[enemiesWithinRange.Count - 1]; 
+		}
+		else
+		{
+			enemyTarget = null; 
 		}
 
 		base.Update(); 

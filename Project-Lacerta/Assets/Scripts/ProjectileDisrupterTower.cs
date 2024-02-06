@@ -41,7 +41,7 @@ public class ProjectileDisrupterTower : MonoBehaviour
 		timePassed += Time.deltaTime; 
 		if (timePassed > rotInterval)
 		{
-			Debug.Log("Spin"); 
+			//Debug.Log("Spin"); 
 			timePassed = 0; 
 			sprite.transform.rotation = Quaternion.Euler( new Vector3(90, sprite.transform.rotation.eulerAngles.y + rotAmount, 0) );  
 		}

@@ -24,6 +24,7 @@ public class TowerBase : MonoBehaviour
 	[SerializeField] TextMeshPro lvlText; 
 	[SerializeField] TextMeshPro upgradeTipText; 
 	[SerializeField] int damageStepPerLevel; 
+	int UpgradeCost => towerCost + (towerCost * (towerLevel + 1)) + (5 * towerLevel); 
 
 	protected virtual void Start()
 	{
@@ -42,7 +43,7 @@ public class TowerBase : MonoBehaviour
 
 		if (towerLevel > 0)
 		{
-			lvlText.text = $"+{towerLevel+1}"; 
+			lvlText.text = $"+{towerLevel}"; 
 		}
 	}
 
@@ -97,9 +98,13 @@ public class TowerBase : MonoBehaviour
 
 	private void OnMouseOver()
 	{
-		int upgradeCost = towerCost + (5 * towerLevel); 
+		if (towerLevel > 4)
+		{
+			return;
+		}
+		int upgradeCost = UpgradeCost; 
 		upgradeTipText.text = $"Upgrade\nCost ${upgradeCost}"; 
-		upgradeTipText.gameObject.SetActive(true); 
+		upgradeTipText.gameObject.SetActive( true ); 
 	}
 
 	private void OnMouseExit()
@@ -109,7 +114,12 @@ public class TowerBase : MonoBehaviour
 
 	void UpgradeTower()
 	{
-		int upgradeCost = towerCost + (5 * towerLevel); 
+		if (towerLevel > 4)
+		{
+			return; 
+		}
+
+		int upgradeCost = UpgradeCost; 
 
 		if ( GameObject.Find("Map").GetComponent<MapScript>().Gold > upgradeCost )
 		{
